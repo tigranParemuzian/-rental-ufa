@@ -1,0 +1,47 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+         ROLE_CLIENT:
+             - ROLE_SONATA_STUFF # have no effect on the UI
+             - ROLE_SONATA_ADMIN # with this role you have a nice navbar with search box
+         ROLE_MODERATOR:
+             - ROLE_SONATA_STUFF # have no effect on the UI
+             - ROLE_SONATA_ADMIN # with this role you have a nice navbar with search box
+
+             # admin.storage.product
+             - ROLE_ADMIN_USER_CREATE
+             - ROLE_ADMIN_USER_DELETE
+             - ROLE_ADMIN_USER_EDIT
+             - ROLE_ADMIN_USER_LIST
+             - ROLE_ADMIN_USER_VIEW
+             - ROLE_ADMIN_USER_CLONE
+
+         ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN]
+         ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+            main:
+                pattern: ^/
+                form_login:
+                    provider: fos_userbundle
+                    csrf_provider: security.csrf.token_manager # Use form.csrf_provider instead for Symfony <2.4
+                    default_target_path: /admin
+                logout:
+                    path: /logout
+                    target: /login#login-form
+                anonymous:    true
+
+    access_control:
+        - { path: ^/login#login-form$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_SONATA_ADMIN }
+#        - { path: ^/, role: IS_AUTHENTICATED_FULLY }

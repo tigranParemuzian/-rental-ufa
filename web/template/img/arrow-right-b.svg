@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="70px" height="34px" viewBox="0 0 70 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40.1 (33804) - http://www.bohemiancoding.com/sketch -->
+    <title>Arrow Right</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Slider---Mast-Head-1" transform="translate(-1274.000000, -570.000000)" fill="#AFB7BD">
+            <g id="Arrows" transform="translate(1225.000000, 570.000000)">
+                <path d="M102.490132,0.711175386 C101.49129,-0.237058462 99.8720069,-0.237058462 98.8748695,0.711175386 C97.8760276,1.65940923 97.8760276,3.19664841 98.8748695,4.14326411 L109.246803,13.9896855 L51.8900959,13.9896855 C50.478763,13.9896855 49.3333333,15.0754618 49.3333333,16.4169053 C49.3333333,17.7583487 50.478763,18.844125 51.8900959,18.844125 L109.175214,18.844125 L98.2356789,29.2293893 C97.236837,30.176005 97.236837,31.7148623 98.2356789,32.661478 C98.7350998,33.1355949 99.389631,33.3734624 100.042458,33.3734624 C100.696989,33.3734624 101.35152,33.1355949 101.850941,32.661478 L119,16.3829242 L102.490132,0.711175386 Z" id="Arrow-Right"></path>
+            </g>
+        </g>
+    </g>
+</svg>

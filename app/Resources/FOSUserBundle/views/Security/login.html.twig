@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{#{% extends "FOSUserBundle::layout.html.twig" %}#}
+{% block content %}
+    <section id="c_contact" class="section-reservations mb-3">
+        <div class="container">
+            <h1 class="h2 text-uppercase letter-spacing-wide my-4">Логин</h1>
+            {% block fos_user_content %}
+                {% if error %}
+                    <p class="text-warning">{{ error|trans({}, 'FOSUserBundle') }}</p>
+                {% else %}
+                    <p>Пожалуйста, добавьте свою регистрационную информацию.</p>
+                {% endif %}
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1">
+
+                        <div class="bg-dark-gray form-block py-4 my-4">
+                            <h2 class="font-size-18 text-uppercase text-center text-white text-with-circle letter-spacing-wide">
+                                <span class="text-with-underline">Личная информация</span>
+                            </h2>
+                            <div class="row">
+                                <form class="col-md-10 offset-md-1 mt-5" method="post" action="{{ path("fos_user_security_check") }}">
+                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+                                    <div class="form-group row">
+                                        <div class="col-md-6 mb-3 mb-lg-0">
+                                            <label for="first-name" class="sr-only col-form-label">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+                                            <input class="form-control" id="username" name="_username"
+                                                   value="{{ last_username?last_username:'' }}" required
+                                                   placeholder="Имя пользователя" type="text">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="last-name" class="sr-only col-form-label">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+                                            <input class="form-control" id="password" name="_password" type="password"
+                                                   placeholder="Пароль"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="row btn-group-reservations mb-5 mt-6">
+                                        <div class="col-md-12 text-md-center">
+                                            <input type="submit" class="btn btn-primary text-uppercase font-weight-bold my-3 my-lg-0 px-4" id="_submit" name="_submit"
+                                                   value="Вход">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endblock fos_user_content %}
+        </div>
+    </section>
+{% endblock %}

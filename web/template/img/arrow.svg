@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="29px" height="18px" viewBox="0 0 29 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40.1 (33804) - http://www.bohemiancoding.com/sketch -->
+    <title>Arrow Down</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Personal---Mast-Head-1" transform="translate(-705.000000, -732.000000)" fill="#AFB7BD">
+            <path d="M711.607269,754.938538 C710.797577,754.127462 710.797577,752.812577 711.607269,752.0015 L722.595556,741.013214 L712.126303,730.545345 C711.31661,729.734269 711.31661,728.419384 712.126303,727.608307 C712.935995,726.797231 714.252264,726.797231 715.063341,727.608307 L728.469631,741.013214 L714.544307,754.938538 C714.138769,755.344076 713.607279,755.546153 713.075788,755.546153 C712.544298,755.546153 712.012807,755.344076 711.607269,754.938538 Z" id="Arrow-Down" transform="translate(719.734816, 741.273077) rotate(-270.000000) translate(-719.734816, -741.273077) "></path>
+        </g>
+    </g>
+</svg>

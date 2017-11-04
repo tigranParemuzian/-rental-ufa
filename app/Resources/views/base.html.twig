@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    {% block meta %}
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="author" content="tigranparemuzian@gmail.com">
+        <meta property="og:locale" content="ru_RU">
+        <meta property="og:url" content="http://www.iphone-remont.services/">
+        <!-- Mobile Metas -->
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <!-- Vendor CSS -->
+        <meta property="og:type" content="website">
+        <meta name="yandex-verification" content="7453a642cb07417e" />
+        <meta name="google-site-verification" content="DmjWyvlQDtfxFhlLmrxD8CiKFIy5JU9FthLtRltoScM" />
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,400i|Poppins:300,400,500,600" rel="stylesheet">
+        <!-- Favicon -->
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    {% endblock %}
+    <title>{% block title %}Ремонт iPhone сервисе!{% endblock %}</title>
+
+    {% block stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/vendor/reset.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/vendor/bootstrap/bootstrap.min.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/vendor/ion-icons/ionicons.min.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/vendor/owl-slider/owl.carousel.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/vendor/slideshow/slideshow.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/vendor/lightbox/lity.min.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('template/css/theme6.css') }}"/>
+
+        <script src="{{ asset('template/vendor/modernizr.js') }}"></script>
+
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+
+<!-- Scroll up -->
+<div class="scrollup">
+    <i class="ion-ios-arrow-up"></i>
+</div>
+
+
+<!-- Main Container -->
+<div class="web-in">
+    {% block serach %}
+
+    {% endblock %}
+
+    {% block coll %}
+        <!-- Start Project Modal -->
+        <div id="modal-bg">
+            <img src="img/exit.svg" class="exit" alt="">
+            <div class="holder">
+                <div class="placer">
+                    <div id="modal" class="center">
+                        <div class="title">
+                            <h5>Start a Project</h5>
+                            <span class="promo-heading">Let's discuss your next project.</span>
+                            <hr>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 w-section mh"><i class="ion-ios-star-outline"></i>
+                                <h3>Our Service</h3>
+                                <p>Lorem ipsum dolor amet consectetuer adipis.
+                                </p>
+                            </div>
+                            <div class="col-sm-6 w-section mh"><i class="ion-ios-glasses-outline"></i>
+                                <h3>Our Promise</h3>
+                                <p>Lorem ipsum dolor amet consectetuer adipis.
+                                </p>
+                            </div>
+                            <div class="col-sm-6 w-section mh"><i class="ion-ios-filing-outline"></i>
+                                <h3>Your Project</h3>
+                                <p>Lorem ipsum dolor amet consectetuer adipis.
+                                </p>
+                            </div>
+                            <div class="col-sm-6 w-section mh"><i class="ion-ios-person-outline"></i>
+                                <h3>Focus on You</h3>
+                                <p>Lorem ipsum dolor amet consectetuer adipis.
+                                </p>
+                            </div>
+                        </div>
+                        <hr>
+                        <a href="#" class="btn"><span>Give us a call</span></a>
+                        <a href="#" class="btn"><span>Contact Page</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block navbar %}
+        <!-- Navigation -->
+        <nav id="dark" class="transparent start-light regular">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="nav-ui n_">
+                            <div>
+                                <div id="menu-icon"><span></span></div>
+                            </div>
+                        </div>
+                        <div class="logo-holder n_">
+                            <div>
+                                <a href="{{ path('homepage') }}">
+                                    <img class="logo" src="{{ asset('template/img/logo.png') }}" alt="logo">
+                                    <img class="logo alt" src="{{ asset('template/img/logo.png') }}" alt="logo2">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="nav-content n_">
+                            <ul>
+                                <li><a href="{{ app.request.get('_route') == 'homepage' ? '' : path('homepage') }}">Главное</a></li>
+                                <li><a href="{{ app.request.get('_route') == 'fos_user_security_login' ? '' : path('fos_user_security_login') }}#c_contact">Логин</a></li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    {% endblock %}
+
+    {% block slyder %}
+        <header id="creative">
+            <div class="slideshow dark1" tabindex="0">
+                <div class="slide slide--layout-1" data-layout="layout1">
+                    <div class="slide-imgwrap">
+                        <div class="slide__img">
+                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/5.jpg') }});"></div>
+                        </div>
+                        <div class="slide__img">
+                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/6.jpg') }});"></div>
+                        </div>
+                        <div class="slide__img">
+                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/7.jpg') }});"></div>
+                        </div>
+                    </div>
+                    <div class="slide__title">
+                        <img src="{{ asset('template/img/logo-banner.svg') }}" alt="">
+                        <h1>Staying ahead of the game</h1>
+                        <h6>Pellentesque ac justo fringilla, efficitur eros eget, ullamcorper velit. Mauris id interdum metus.</h6>
+                    </div>
+                </div>
+                <div class="slide slide--layout-7" data-layout="layout7">
+                    <div class="slide-imgwrap">
+                        <div class="slide__img">
+                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/8.png') }});"></div>
+                        </div>
+                        <div class="slide__img">
+                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/9.png') }});"></div>
+                        </div>
+                        <div class="slide__img">
+                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/10.png') }});"></div>
+                        </div>
+                    </div>
+                    <div class="slide__title">
+                        <img src="{{ asset('template/img/logo-banner.svg') }}" alt="">
+                        <h1>360 degree solution pack</h1>
+                        <h6>Pellentesque ac justo fringilla, efficitur eros eget, ullamcorper velit. Mauris id interdum metus.</h6>
+                    </div>
+                </div>
+                <div class="slide slide--layout-4" data-layout="layout4">
+                    <div class="slide-imgwrap">
+                        <div class="slide__img">
+                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/1.jpg') }});"></div>
+                        </div>
+                        <div class="slide__img">
+                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/2.jpg') }});"></div>
+                        </div>
+                        <div class="slide__img">
+                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/3.jpg') }});"></div>
+                        </div>
+                        <div class="slide__img">
+                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/4.jpg') }});"></div>
+                        </div>
+                    </div>
+                    <div class="slide__title">
+                        <img src="{{ asset('template/img/logo-banner.svg') }}" alt="">
+                        <h1>Superior Product Solutions</h1>
+                        <h6>Pellentesque ac justo fringilla, efficitur eros eget, ullamcorper velit. Mauris id interdum metus.</h6>
+                    </div>
+                </div>
+                <div class="slideshow__nav slideshow__nav--arrows">
+                    <button id="next-slide" class="btn btn--arrow" aria-label="Next slide"><img src="{{ asset('template/img/arrow-right-b.svg') }}" class="icon icon--next" alt=""></button>
+                    <button id="prev-slide" class="btn btn--arrow" aria-label="Previous slide"><img src="{{ asset('template/img/arrow-left-b.svg') }}" class="icon icon--prev" alt=""></button>
+                </div>
+            </div>
+        </header>
+    {% endblock %}
+
+    {% block content %}
+
+    {% endblock %}
+
+    {% block contact %}
+
+    {% endblock %}
+    {% block footer %}
+
+    {% endblock %}
+</div>
+{% block javascripts %}
+    <script src="{{ asset('template/vendor/jquery-2.2.1.min.js') }}"></script>
+    <script src="{{ asset('template/vendor/matchHeight-min.js') }}"></script>
+    <script src="{{ asset('template/vendor/contact/validator.js') }}"></script>
+    <script src="{{ asset('template/vendor/contact/contact.js') }}"></script>
+    <script src="{{ asset('template/vendor/pace.min.js') }}"></script>
+    <script src="{{ asset('template/vendor/headroom/headroom.min.js') }}"></script>
+    <script src="{{ asset('template/vendor/owl-slider/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('template/vendor/slideshow/anime.min.js') }}"></script>
+    <script src="{{ asset('template/vendor/slideshow/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('template/vendor/slideshow/main.js') }}"></script>
+    <script src="{{ asset('template/vendor/parallax/materialize.min.js') }}"></script>
+    <script src="{{ asset('template/vendor/lightbox/lity.min.js') }}"></script>
+    <script src="{{ asset('template/vendor/tabs/jquery.tabslet.min.js') }}"></script>
+    <script src="{{ asset('template/vendor/masonry.pkgd.min.js') }}"></script>
+    <script src="{{ asset('template/js/main.min.js') }}"></script>
+
+{% endblock %}
+</body>
+</html>
