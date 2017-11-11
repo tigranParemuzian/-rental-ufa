@@ -98,6 +98,18 @@ class User extends BaseUser
 
     /**
      * @var
+     * @ORM\Column(name="price_from", type="integer")
+     */
+    private $priceFrom;
+
+    /**
+     * @var
+     * @ORM\Column(name="price_to", type="integer")
+     */
+    private $priceTo;
+
+    /**
+     * @var
      * @ORM\Column(name="phone", type="string", length=20 , nullable=false, unique=true)
      * @Assert\NotBlank(message="user.phone.not_blank", groups={"Registration", "Profile"})
      * @Assert\Length(
@@ -120,6 +132,9 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
+        $this->phone = '00000000';
+        $this->priceFrom = 1;
+        $this->priceTo = 1;
         $this->problematic = false;
         $this->sentPassword = true;
         $this->databasePermission = false;
@@ -136,5 +151,301 @@ class User extends BaseUser
     public function getClientFullName() {
 
         return $this->firstName . ' ' . $this->lastName;
+    }
+
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     *
+     * @return User
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     *
+     * @return User
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * Set patronymic
+     *
+     * @param string $patronymic
+     *
+     * @return User
+     */
+    public function setPatronymic($patronymic)
+    {
+        $this->patronymic = $patronymic;
+
+        return $this;
+    }
+
+    /**
+     * Get patronymic
+     *
+     * @return string
+     */
+    public function getPatronymic()
+    {
+        return $this->patronymic;
+    }
+
+    /**
+     * Set contract
+     *
+     * @param string $contract
+     *
+     * @return User
+     */
+    public function setContract($contract)
+    {
+        $this->contract = $contract;
+
+        return $this;
+    }
+
+    /**
+     * Get contract
+     *
+     * @return string
+     */
+    public function getContract()
+    {
+        return $this->contract;
+    }
+
+    /**
+     * Set contractCost
+     *
+     * @param string $contractCost
+     *
+     * @return User
+     */
+    public function setContractCost($contractCost)
+    {
+        $this->contractCost = $contractCost;
+
+        return $this;
+    }
+
+    /**
+     * Get contractCost
+     *
+     * @return string
+     */
+    public function getContractCost()
+    {
+        return $this->contractCost;
+    }
+
+    /**
+     * Set paymentDate
+     *
+     * @param \DateTime $paymentDate
+     *
+     * @return User
+     */
+    public function setPaymentDate($paymentDate)
+    {
+        $this->paymentDate = $paymentDate;
+
+        return $this;
+    }
+
+    /**
+     * Get paymentDate
+     *
+     * @return \DateTime
+     */
+    public function getPaymentDate()
+    {
+        return $this->paymentDate;
+    }
+
+    /**
+     * Set inhabited
+     *
+     * @param boolean $inhabited
+     *
+     * @return User
+     */
+    public function setInhabited($inhabited)
+    {
+        $this->inhabited = $inhabited;
+
+        return $this;
+    }
+
+    /**
+     * Get inhabited
+     *
+     * @return boolean
+     */
+    public function getInhabited()
+    {
+        return $this->inhabited;
+    }
+
+    /**
+     * Set databasePermission
+     *
+     * @param boolean $databasePermission
+     *
+     * @return User
+     */
+    public function setDatabasePermission($databasePermission)
+    {
+        $this->databasePermission = $databasePermission;
+
+        return $this;
+    }
+
+    /**
+     * Get databasePermission
+     *
+     * @return boolean
+     */
+    public function getDatabasePermission()
+    {
+        return $this->databasePermission;
+    }
+
+    /**
+     * Set sentPassword
+     *
+     * @param boolean $sentPassword
+     *
+     * @return User
+     */
+    public function setSentPassword($sentPassword)
+    {
+        $this->sentPassword = $sentPassword;
+
+        return $this;
+    }
+
+    /**
+     * Get sentPassword
+     *
+     * @return boolean
+     */
+    public function getSentPassword()
+    {
+        return $this->sentPassword;
+    }
+
+    /**
+     * Set problematic
+     *
+     * @param boolean $problematic
+     *
+     * @return User
+     */
+    public function setProblematic($problematic)
+    {
+        $this->problematic = $problematic;
+
+        return $this;
+    }
+
+    /**
+     * Get problematic
+     *
+     * @return boolean
+     */
+    public function getProblematic()
+    {
+        return $this->problematic;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     *
+     * @return User
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPriceFrom()
+    {
+        return $this->priceFrom;
+    }
+
+    /**
+     * @param mixed $priceFrom
+     */
+    public function setPriceFrom($priceFrom)
+    {
+        $this->priceFrom = $priceFrom;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPriceTo()
+    {
+        return $this->priceTo;
+    }
+
+    /**
+     * @param mixed $priceTo
+     */
+    public function setPriceTo($priceTo)
+    {
+        $this->priceTo = $priceTo;
     }
 }

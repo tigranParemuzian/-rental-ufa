@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
 {#{% extends "FOSUserBundle::layout.html.twig" %}#}
-{% block content %}
-    <section id="c_contact" class="section-reservations mb-3">
+{% block slyder %}
+    {{ parent() }}
+    {#<section id="c_contact" class="section-reservations mb-3">#}
         <div class="container">
             <h1 class="h2 text-uppercase letter-spacing-wide my-4">Логин</h1>
             {% block fos_user_content %}
@@ -47,5 +48,5 @@
                 </div>
             {% endblock fos_user_content %}
         </div>
-    </section>
+    {#</section>#}
 {% endblock %}

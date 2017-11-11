@@ -25,6 +25,30 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  */
 class UserAdmin extends Admin
 {
+
+    private $roles;
+
+    public function __construct($code, $class, $baseControllerName)
+    {
+        parent::__construct($code, $class, $baseControllerName);
+
+
+    }
+
+    public function getRolesPerms(){
+        $securityContext = $this->getConfigurationPool()->getContainer()->get('security.authorization_checker');
+
+        if ($securityContext->isGranted('ROLE_MODERATOR') === true){
+            $this->roles =  ['ROLE_CLIENT'=>'User'];
+        }elseif ($securityContext->isGranted('ROLE_ADMIN') === true){
+            $this->roles =  ['ROLE_CLIENT'=>'User', 'ROLE_MODERATOR'=>'Menager'];
+        }elseif($securityContext->isGranted('ROLE_SUPER_ADMIN') === true){
+            $this->roles =  ['ROLE_CLIENT'=>'User', 'ROLE_MODERATOR'=>'Worker', 'ROLE_ADMIN'=>'Admin'];
+
+        };
+
+        return $this->roles;
+    }
 //    /**
 //     * @return \Symfony\Component\Form\FormBuilder
 //     */
@@ -58,6 +82,7 @@ class UserAdmin extends Admin
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
+        $this->getRolesPerms();
         $datagridMapper
             ->add('id')
             ->add('email')
@@ -65,11 +90,9 @@ class UserAdmin extends Admin
             ->add('lastName')
             ->add('firstName')
             ->add('enabled')
-            ->add('isValid', null, array('label'=>'Valid'))
             ->add('phone')
             ->add('roles', 'doctrine_orm_string', array(), 'choice', array(
-                'choices'  => array('ROLE_USER'=>'User', 'ROLE_MODERATOR'=>'Worker',
-                    'ROLE_SUPER_ADMIN'=>'Admin'),
+                'choices'  => array(),
             ))
             ->add('created', 'doctrine_orm_datetime_range', array(),'sonata_type_datetime_range_picker',
                 array('field_options_start' => array('format' => 'yyyy-MM-dd HH:mm:ss'),
@@ -85,16 +108,15 @@ class UserAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('email')
-            ->add('username')
+            ->add('username', null, ['label'=>'Phone'])
             ->add('lastName')
             ->add('firstName')
-            ->add('phone')
+//            ->add('phone')
             ->add('roles', 'choice', array(
-                'choices'  => array('ROLE_USER'=>'User', 'ROLE_MODERATOR'=>'Worker', 'ROLE_SUPER_ADMIN'=>'Admin'),
+                'choices'  => $this->getRolesPerms(),
                 'multiple' => true
             ))
             ->add('enabled', null, array('editable'=>true))
-            ->add('isValid', null, array('editable'=>true, 'label'=>'Valid'))
 //            ->add('created')
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -111,10 +133,13 @@ class UserAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+
         // get container
         $container = $this->getConfigurationPool()->getContainer();
 
         $roles = $container->getParameter('security.role_hierarchy.roles');
+
+//        dump($roles); exit;
 
         $formMapper
             ->tab('General')
@@ -164,9 +189,7 @@ class UserAdmin extends Admin
             ->add('priceFrom')
             ->add('priceTo')
             ->add('roles', 'choice', array(
-                'choices'  => array('ROLE_CLIENT'=>'Clinet',
-                    'ROLE_MODERATOR'=>'Moderator',
-                    'ROLE_ADMIN'=>'Admin'),
+                'choices'  => $this->getRolesPerms(),
                 'multiple' => true
             ))
             ->add('plainPassword', 'repeated', array('first_name' => 'password',
@@ -205,19 +228,10 @@ class UserAdmin extends Admin
         parent::preUpdate($object);
 
 
+//        dump($this->getRolesPerms());
+//        dump($object); exit;
         $this->updatePassword($object);
-
-        if($object->getUserEmails()){
-            foreach($object->getUserEmails() as $email) {
-                $email->setUser($object);
-            }
-        }
-
-        if($object->getUserPrice()){
-            foreach($object->getUserPrice() as $price) {
-                $price->setUser($object);
-            }
-        }
+        $object->setPhone($object->getUsername());
 
     }
 
@@ -226,18 +240,8 @@ class UserAdmin extends Admin
         parent::prePersist($object);
 
         $this->updatePassword($object);
+        $object->setPhone($object->getUsername());
 
-        if($object->getUserEmails()){
-            foreach($object->getUserEmails() as $email) {
-                $email->setUser($object);
-            }
-        }
-
-        if($object->getUserPrice()){
-            foreach($object->getUserPrice() as $price) {
-                $price->setUser($object);
-            }
-        }
     }
 
     /**
@@ -289,5 +293,43 @@ class UserAdmin extends Admin
         $datagrid->buildPager();
 
         return $this->getModelManager()->getDataSourceIterator($datagrid, $this->getExportFields());
+    }
+
+    /**
+     * This function
+     * @param string $context
+     * @return \Sonata\AdminBundle\Datagrid\ProxyQueryInterface
+     */
+    public function createQuery($context = 'list')
+    {
+
+        $query = parent::createQuery($context);
+
+        $securityContext = $this->getConfigurationPool()->getContainer()->get('security.authorization_checker');
+
+        if ($securityContext->isGranted('ROLE_MODERATOR') === true){
+
+            $query->andWhere(
+                $query->expr()->orX(
+                    $query->expr()->like($query->getRootAliases()[0] . '.roles', ':rls1')
+                )
+            );
+            $query->setParameter('rls1', '%ROLE_CLIENT%');
+
+        }elseif ($securityContext->isGranted('ROLE_ADMIN') === true){
+
+            $query->andWhere(
+                $query->expr()->orX(
+                    $query->expr()->like($query->getRootAliases()[0] . '.roles', ':rls1'),
+                    $query->expr()->like($query->getRootAliases()[0] . '.roles', ':rls2')
+                )
+            );
+            $query->setParameter('rls1', '%ROLE_CLIENT%');
+            $query->setParameter('rls2', '%ROLE_MODERATOR%');
+
+
+        };
+
+        return $query;
     }
 }

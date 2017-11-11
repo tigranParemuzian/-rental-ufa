@@ -8,19 +8,43 @@ security:
          ROLE_CLIENT:
              - ROLE_SONATA_STUFF # have no effect on the UI
              - ROLE_SONATA_ADMIN # with this role you have a nice navbar with search box
+
+             - ROLE_APP_ADMIN_ADS_LIST
+             - ROLE_APP_ADMIN_ADS_VIEW
+
          ROLE_MODERATOR:
-             - ROLE_SONATA_STUFF # have no effect on the UI
-             - ROLE_SONATA_ADMIN # with this role you have a nice navbar with search box
+              - ROLE_SONATA_STUFF # have no effect on the UI
+              - ROLE_SONATA_ADMIN # with this role you have a nice navbar with search box
 
-             # admin.storage.product
-             - ROLE_ADMIN_USER_CREATE
-             - ROLE_ADMIN_USER_DELETE
-             - ROLE_ADMIN_USER_EDIT
-             - ROLE_ADMIN_USER_LIST
-             - ROLE_ADMIN_USER_VIEW
-             - ROLE_ADMIN_USER_CLONE
+              # admin.storage.product
+              - ROLE_APP_ADMIN_USER_CREATE
+              - ROLE_APP_ADMIN_USER_DELETE
+              - ROLE_APP_ADMIN_USER_EDIT
+              - ROLE_APP_ADMIN_USER_LIST
+              - ROLE_APP_ADMIN_USER_VIEW
 
-         ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN]
+              - ROLE_APP_ADMIN_ADS_CREATE
+              - ROLE_APP_ADMIN_ADS_DELETE
+              - ROLE_APP_ADMIN_ADS_EDIT
+              - ROLE_APP_ADMIN_ADS_LIST
+              - ROLE_APP_ADMIN_ADS_VIEW
+
+         ROLE_ADMIN:
+              - ROLE_USER
+              - ROLE_SONATA_ADMIN
+
+              - ROLE_APP_ADMIN_USER_CREATE
+              - ROLE_APP_ADMIN_USER_DELETE
+              - ROLE_APP_ADMIN_USER_EDIT
+              - ROLE_APP_ADMIN_USER_LIST
+              - ROLE_APP_ADMIN_USER_VIEW
+
+              - ROLE_APP_ADMIN_ADS_CREATE
+              - ROLE_APP_ADMIN_ADS_DELETE
+              - ROLE_APP_ADMIN_ADS_EDIT
+              - ROLE_APP_ADMIN_ADS_LIST
+              - ROLE_APP_ADMIN_ADS_VIEW
+
          ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     providers:

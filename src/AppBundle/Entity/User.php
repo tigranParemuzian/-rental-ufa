@@ -74,39 +74,39 @@ class User extends BaseUser
 
     /**
      * @var
-     * @ORM\Column(name="inhabited", type="boolean")
+     * @ORM\Column(name="inhabited", type="boolean", options={"default":0})
      */
-    private $inhabited;
+    private $inhabited=false;
 
     /**
      * @var
-     * @ORM\Column(name="database_permission", type="boolean")
+     * @ORM\Column(name="database_permission", type="boolean", options={"default":0})
      */
-    private $databasePermission;
+    private $databasePermission=false;
 
     /**
      * @var
-     * @ORM\Column(name="sent_password", type="boolean")
+     * @ORM\Column(name="sent_password", type="boolean", options={"default":0})
      */
-    private $sentPassword;
+    private $sentPassword=false;
 
     /**
      * @var
-     * @ORM\Column(name="problematic", type="boolean")
+     * @ORM\Column(name="problematic", type="boolean", options={"default":0})
      */
-    private $problematic;
+    private $problematic=false;
 
     /**
      * @var
-     * @ORM\Column(name="price_from", type="integer")
+     * @ORM\Column(name="price_from", type="integer", options={"default":0})
      */
-    private $priceFrom;
+    private $priceFrom=0;
 
     /**
      * @var
      * @ORM\Column(name="price_to", type="integer")
      */
-    private $priceTo;
+    private $priceTo=0;
 
     /**
      * @var
@@ -132,14 +132,6 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->phone = '00000000';
-        $this->priceFrom = 1;
-        $this->priceTo = 1;
-        $this->problematic = false;
-        $this->sentPassword = true;
-        $this->databasePermission = false;
-        $this->inhabited = false;
-        $this->paymentDate = new \DateTime('now');
 
     }
 

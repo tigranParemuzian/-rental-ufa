@@ -19,7 +19,7 @@
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     {% endblock %}
-    <title>{% block title %}Ремонт iPhone сервисе!{% endblock %}</title>
+    <title>{% block title %}rental-ufa.ru!{% endblock %}</title>
 
     {% block stylesheets %}
         <link rel="stylesheet" type="text/css" href="{{ asset('template/vendor/reset.css') }}"/>
@@ -49,49 +49,6 @@
 
     {% endblock %}
 
-    {% block coll %}
-        <!-- Start Project Modal -->
-        <div id="modal-bg">
-            <img src="img/exit.svg" class="exit" alt="">
-            <div class="holder">
-                <div class="placer">
-                    <div id="modal" class="center">
-                        <div class="title">
-                            <h5>Start a Project</h5>
-                            <span class="promo-heading">Let's discuss your next project.</span>
-                            <hr>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 w-section mh"><i class="ion-ios-star-outline"></i>
-                                <h3>Our Service</h3>
-                                <p>Lorem ipsum dolor amet consectetuer adipis.
-                                </p>
-                            </div>
-                            <div class="col-sm-6 w-section mh"><i class="ion-ios-glasses-outline"></i>
-                                <h3>Our Promise</h3>
-                                <p>Lorem ipsum dolor amet consectetuer adipis.
-                                </p>
-                            </div>
-                            <div class="col-sm-6 w-section mh"><i class="ion-ios-filing-outline"></i>
-                                <h3>Your Project</h3>
-                                <p>Lorem ipsum dolor amet consectetuer adipis.
-                                </p>
-                            </div>
-                            <div class="col-sm-6 w-section mh"><i class="ion-ios-person-outline"></i>
-                                <h3>Focus on You</h3>
-                                <p>Lorem ipsum dolor amet consectetuer adipis.
-                                </p>
-                            </div>
-                        </div>
-                        <hr>
-                        <a href="#" class="btn"><span>Give us a call</span></a>
-                        <a href="#" class="btn"><span>Contact Page</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% endblock %}
-
     {% block navbar %}
         <!-- Navigation -->
         <nav id="dark" class="transparent start-light regular">
@@ -111,12 +68,12 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="nav-content n_">
+                        {#<div class="nav-content n_">
                             <ul>
                                 <li><a href="{{ app.request.get('_route') == 'homepage' ? '' : path('homepage') }}">Главное</a></li>
                                 <li><a href="{{ app.request.get('_route') == 'fos_user_security_login' ? '' : path('fos_user_security_login') }}#c_contact">Логин</a></li>
                             </ul>
-                        </div>
+                        </div>#}
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -126,68 +83,13 @@
     {% endblock %}
 
     {% block slyder %}
-        <header id="creative">
-            <div class="slideshow dark1" tabindex="0">
-                <div class="slide slide--layout-1" data-layout="layout1">
-                    <div class="slide-imgwrap">
-                        <div class="slide__img">
-                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/5.jpg') }});"></div>
-                        </div>
-                        <div class="slide__img">
-                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/6.jpg') }});"></div>
-                        </div>
-                        <div class="slide__img">
-                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/7.jpg') }});"></div>
-                        </div>
-                    </div>
-                    <div class="slide__title">
-                        <img src="{{ asset('template/img/logo-banner.svg') }}" alt="">
-                        <h1>Staying ahead of the game</h1>
-                        <h6>Pellentesque ac justo fringilla, efficitur eros eget, ullamcorper velit. Mauris id interdum metus.</h6>
-                    </div>
-                </div>
-                <div class="slide slide--layout-7" data-layout="layout7">
-                    <div class="slide-imgwrap">
-                        <div class="slide__img">
-                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/8.png') }});"></div>
-                        </div>
-                        <div class="slide__img">
-                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/9.png') }});"></div>
-                        </div>
-                        <div class="slide__img">
-                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/10.png') }});"></div>
-                        </div>
-                    </div>
-                    <div class="slide__title">
-                        <img src="{{ asset('template/img/logo-banner.svg') }}" alt="">
-                        <h1>360 degree solution pack</h1>
-                        <h6>Pellentesque ac justo fringilla, efficitur eros eget, ullamcorper velit. Mauris id interdum metus.</h6>
-                    </div>
-                </div>
-                <div class="slide slide--layout-4" data-layout="layout4">
-                    <div class="slide-imgwrap">
-                        <div class="slide__img">
-                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/1.jpg') }});"></div>
-                        </div>
-                        <div class="slide__img">
-                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/2.jpg') }});"></div>
-                        </div>
-                        <div class="slide__img">
-                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/3.jpg') }});"></div>
-                        </div>
-                        <div class="slide__img">
-                            <div class="slide__img-inner" style="background-image: url({{ asset('template/img/headers/slideshow/4.jpg') }});"></div>
-                        </div>
-                    </div>
-                    <div class="slide__title">
-                        <img src="{{ asset('template/img/logo-banner.svg') }}" alt="">
-                        <h1>Superior Product Solutions</h1>
-                        <h6>Pellentesque ac justo fringilla, efficitur eros eget, ullamcorper velit. Mauris id interdum metus.</h6>
-                    </div>
-                </div>
-                <div class="slideshow__nav slideshow__nav--arrows">
-                    <button id="next-slide" class="btn btn--arrow" aria-label="Next slide"><img src="{{ asset('template/img/arrow-right-b.svg') }}" class="icon icon--next" alt=""></button>
-                    <button id="prev-slide" class="btn btn--arrow" aria-label="Previous slide"><img src="{{ asset('template/img/arrow-left-b.svg') }}" class="icon icon--prev" alt=""></button>
+        <header id="sp2" class="center parallax-container dark" data-overlay="9">
+            <div class="parallax"><img src="{{ asset('template/img/contact/header2.jpg') }}" alt=""></div>
+            <div class="header-in">
+                <div class="caption">
+                    <h5>Добро Пожаловать</h5>
+                    <h1>Rental Ufa</h1>
+                    <h3>Вы экономите свое время с поиска, нервы от всего процесса аренды жилья без посредников и риэлтеров.</h3>
                 </div>
             </div>
         </header>

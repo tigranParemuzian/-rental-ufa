@@ -16,6 +16,7 @@
                 {% set password = app.request.get('_password') %}
                 {% set confirmPassword = app.request.get('_password_confirm') %}
 
+                <field name="salt" column="salt" type="string" nullable="true" />
                 <div class="form-group row">
                     {{ form_errors(form.username) }}
                     {{ form_label(form.username, null, {'label_attr': {'class': 'col-sm-6 col-md-5 control-label'}}) }}
