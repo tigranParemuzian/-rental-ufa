@@ -39,11 +39,11 @@ class UserAdmin extends Admin
         $securityContext = $this->getConfigurationPool()->getContainer()->get('security.authorization_checker');
 
         if ($securityContext->isGranted('ROLE_MODERATOR') === true){
-            $this->roles =  ['ROLE_CLIENT'=>'User'];
+            $this->roles =  ['ROLE_CLIENT'=>'КЛИЕНТЫ'];
         }elseif ($securityContext->isGranted('ROLE_ADMIN') === true){
-            $this->roles =  ['ROLE_CLIENT'=>'User', 'ROLE_MODERATOR'=>'Menager'];
+            $this->roles =  ['ROLE_CLIENT'=>'КЛИЕНТЫ', 'ROLE_MODERATOR'=>'МЕНЕДЖЕР'];
         }elseif($securityContext->isGranted('ROLE_SUPER_ADMIN') === true){
-            $this->roles =  ['ROLE_CLIENT'=>'User', 'ROLE_MODERATOR'=>'Worker', 'ROLE_ADMIN'=>'Admin'];
+            $this->roles =  ['ROLE_CLIENT'=>'КЛИЕНТЫ', 'ROLE_MODERATOR'=>'МЕНЕДЖЕР', 'ROLE_ADMIN'=>'Admin'];
 
         };
 
@@ -114,8 +114,9 @@ class UserAdmin extends Admin
 //            ->add('phone')
             ->add('roles', 'choice', array(
                 'choices'  => $this->getRolesPerms(),
-                'multiple' => true
-            ))
+                'multiple' => true,
+                'template' => 'AppBundle:CRUD:user_rols_list.html.twig')
+            )
             ->add('enabled', null, array('editable'=>true))
 //            ->add('created')
             ->add('_action', 'actions', array(
@@ -142,7 +143,6 @@ class UserAdmin extends Admin
 //        dump($roles); exit;
 
         $formMapper
-            ->tab('General')
             ->with('General', array(
                 'class' =>'col-sm-3',
                 'box-class' => 'box box-solid box-danger',
@@ -176,17 +176,20 @@ class UserAdmin extends Admin
                 'box-class' => 'box box-solid box-danger',
                 'description'=>'Products main create part'
             ))
-            ->add('inhabited')
             ->add('databasePermission')
-            ->add('problematic')
+            ->add('inhabited')
+            ->add('sentPassword')
             ->add('enabled')
+            ->add('problematic')
             ->end()
             ->with('Info', array(
                 'class' =>'col-sm-3',
                 'box-class' => 'box box-solid box-danger',
                 'description'=>'Products main create part'
             ))
+            ->add('types')
             ->add('priceFrom')
+            ->add('regions')
             ->add('priceTo')
             ->add('roles', 'choice', array(
                 'choices'  => $this->getRolesPerms(),
@@ -199,7 +202,6 @@ class UserAdmin extends Admin
                 'invalid_message' => 'Passwords do not match',
                 'first_options' => array('label' => 'Password'),
                 'second_options' => array('label' => 'Repeat Password')))
-            ->end()
             ->end()
         ;
     }
@@ -227,11 +229,22 @@ class UserAdmin extends Admin
     {
         parent::preUpdate($object);
 
-
-//        dump($this->getRolesPerms());
-//        dump($object); exit;
         $this->updatePassword($object);
         $object->setPhone($object->getUsername());
+
+
+        if($object->getRegions()){
+            foreach ($object->getRegions() as $rg){
+                $rg->setUser($object);
+            }
+        }
+
+        if($object->getTypes()){
+            foreach ($object->getTypes() as $rg){
+                $rg->setUser($object);
+            }
+        }
+
 
     }
 
@@ -242,6 +255,25 @@ class UserAdmin extends Admin
         $this->updatePassword($object);
         $object->setPhone($object->getUsername());
 
+        $message = "Rental-ufa.Ru сайт %0A{$object->getUsername()} логин %0A {$object->getPassword()} пароль";
+        $url = "http://smsc.ru/sys/send.php?login=tigran2006&psw=aa2009aa&phones={$object->getUsername()}&mes={$message}}";
+        $t = file_get_contents($url);
+
+        $log = $this->getConfigurationPool()->getContainer()->get('monolog.logger.command_create');
+
+        $log->info($t);
+
+        if($object->getRegions()){
+            foreach ($object->getRegions() as $rg){
+                $rg->setUser($object);
+            }
+        }
+
+        if($object->getTypes()){
+            foreach ($object->getTypes() as $rg){
+                $rg->setUser($object);
+            }
+        }
     }
 
     /**

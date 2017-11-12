@@ -24,20 +24,6 @@ class Ads
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
-     */
-    private $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="address", type="string", length=255)
-     */
-    private $address;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="price", type="string", length=255)
      */
     private $price;
@@ -122,9 +108,23 @@ class Ads
     /**
      * @var int
      *
-     * @ORM\Column(name="furnisher", type="smallint")
+     * @ORM\Column(name="furnisher", type="boolean")
      */
     private $furnisher;
+
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="not_avalible", type="boolean")
+     */
+    private $notAvalible;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="not_connected", type="boolean")
+     */
+    private $notConnected;
 
     /**
      * @var
@@ -140,6 +140,12 @@ class Ads
      */
     private $types;
 
+    public function __toString()
+    {
+        return $this->id ? $this->price . ' р.'.$this->region : 'New Ads';
+        // TODO: Implement __toString() method.
+    }
+
     /**
      * Get id
      *
@@ -148,54 +154,6 @@ class Ads
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Ads
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set address
-     *
-     * @param string $address
-     *
-     * @return Ads
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    /**
-     * Get address
-     *
-     * @return string
-     */
-    public function getAddress()
-    {
-        return $this->address;
     }
 
     /**
@@ -509,5 +467,84 @@ class Ads
     {
         return $this->furnisher;
     }
-}
 
+    /**
+     * Set region
+     *
+     * @param \AppBundle\Entity\Regions $region
+     *
+     * @return Ads
+     */
+    public function setRegion(\AppBundle\Entity\Regions $region = null)
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * Get region
+     *
+     * @return \AppBundle\Entity\Regions
+     */
+    public function getRegion()
+    {
+        return $this->region;
+    }
+
+    /**
+     * Set types
+     *
+     * @param \AppBundle\Entity\Types $types
+     *
+     * @return Ads
+     */
+    public function setTypes(\AppBundle\Entity\Types $types = null)
+    {
+        $this->types = $types;
+
+        return $this;
+    }
+
+    /**
+     * Get types
+     *
+     * @return \AppBundle\Entity\Types
+     */
+    public function getTypes()
+    {
+        return $this->types;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNotAvalible()
+    {
+        return $this->notAvalible;
+    }
+
+    /**
+     * @param int $notAvalible
+     */
+    public function setNotAvalible($notAvalible)
+    {
+        $this->notAvalible = $notAvalible;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNotConnected()
+    {
+        return $this->notConnected;
+    }
+
+    /**
+     * @param int $notConnected
+     */
+    public function setNotConnected($notConnected)
+    {
+        $this->notConnected = $notConnected;
+    }
+}

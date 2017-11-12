@@ -42,6 +42,19 @@ class Types
      */
     private $ads;
 
+    /**
+     * @var
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="types")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+
+    public function __toString()
+    {
+        return $this->id ? $this->name : 'New Type';
+        // TODO: Implement __toString() method.
+    }
 
     /**
      * Get id
@@ -100,5 +113,45 @@ class Types
     {
         return $this->isEnabled;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->ads = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add ad
+     *
+     * @param \AppBundle\Entity\Ads $ad
+     *
+     * @return Types
+     */
+    public function addAd(\AppBundle\Entity\Ads $ad)
+    {
+        $this->ads[] = $ad;
+
+        return $this;
+    }
+
+    /**
+     * Remove ad
+     *
+     * @param \AppBundle\Entity\Ads $ad
+     */
+    public function removeAd(\AppBundle\Entity\Ads $ad)
+    {
+        $this->ads->removeElement($ad);
+    }
+
+    /**
+     * Get ads
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAds()
+    {
+        return $this->ads;
+    }
+}

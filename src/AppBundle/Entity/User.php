@@ -123,6 +123,19 @@ class User extends BaseUser
      */
     private $phone;
 
+
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Regions", mappedBy="user")
+     */
+    private $regions;
+
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Types", mappedBy="user")
+     */
+    private $types;
+
     public function __toString()
     {
         return $this->id ? $this->username : '';
@@ -132,6 +145,8 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
+        $this->regions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->types = new \Doctrine\Common\Collections\ArrayCollection();
 
     }
 
@@ -439,5 +454,73 @@ class User extends BaseUser
     public function setPriceTo($priceTo)
     {
         $this->priceTo = $priceTo;
+    }
+
+    /**
+     * Add region
+     *
+     * @param \AppBundle\Entity\Regions $region
+     *
+     * @return User
+     */
+    public function addRegion(\AppBundle\Entity\Regions $region)
+    {
+        $this->regions[] = $region;
+
+        return $this;
+    }
+
+    /**
+     * Remove region
+     *
+     * @param \AppBundle\Entity\Regions $region
+     */
+    public function removeRegion(\AppBundle\Entity\Regions $region)
+    {
+        $this->regions->removeElement($region);
+    }
+
+    /**
+     * Get regions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRegions()
+    {
+        return $this->regions;
+    }
+
+    /**
+     * Add type
+     *
+     * @param \AppBundle\Entity\Types $type
+     *
+     * @return User
+     */
+    public function addType(\AppBundle\Entity\Types $type)
+    {
+        $this->types[] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Remove type
+     *
+     * @param \AppBundle\Entity\Types $type
+     */
+    public function removeType(\AppBundle\Entity\Types $type)
+    {
+        $this->types->removeElement($type);
+    }
+
+    /**
+     * Get types
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTypes()
+    {
+        return $this->types;
     }
 }

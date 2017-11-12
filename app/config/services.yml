@@ -18,22 +18,22 @@ services:
         class: AppBundle\Admin\AdsAdmin
         arguments: [~, AppBundle\Entity\Ads, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: Ads, label: Ads}
+            - {name: sonata.admin, manager_type: orm, group: Ads, label: АКТУАЛЬНЫЕ ОБЪЕКТЫ}
 
     app.admin.types:
         class: AppBundle\Admin\TypesAdmin
         arguments: [~, AppBundle\Entity\Types, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: Ads, label: Types}
+            - {name: sonata.admin, manager_type: orm, group: Ads, label: Виды недвижимости }
 
     app.admin.regions:
         class: AppBundle\Admin\RegionsAdmin
         arguments: [~, AppBundle\Entity\Regions, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: Ads, label: Regions }
+            - {name: sonata.admin, manager_type: orm, group: Ads, label: Pайоны }
 
     app.admin.user:
         class: AppBundle\Admin\UserAdmin
         arguments: [~, AppBundle\Entity\User, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: User, label: User}
+            - {name: sonata.admin, manager_type: orm, group: User, label: АКТУАЛЬНЫЕ КЛИЕНТЫ}

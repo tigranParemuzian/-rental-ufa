@@ -112,6 +112,20 @@ class Ads
      */
     private $furnisher;
 
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="not_avalible", type="boolean")
+     */
+    private $notAvalible;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="not_connected", type="boolean")
+     */
+    private $notConnected;
+
     /**
      * @var
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Regions", inversedBy="ads")
@@ -500,5 +514,37 @@ class Ads
     public function getTypes()
     {
         return $this->types;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNotAvalible()
+    {
+        return $this->notAvalible;
+    }
+
+    /**
+     * @param int $notAvalible
+     */
+    public function setNotAvalible($notAvalible)
+    {
+        $this->notAvalible = $notAvalible;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNotConnected()
+    {
+        return $this->notConnected;
+    }
+
+    /**
+     * @param int $notConnected
+     */
+    public function setNotConnected($notConnected)
+    {
+        $this->notConnected = $notConnected;
     }
 }

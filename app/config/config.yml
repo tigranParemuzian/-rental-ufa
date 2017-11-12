@@ -143,7 +143,7 @@ sonata_admin:
 
         layout:  SonataAdminBundle::standard_layout.html.twig
         ajax:    SonataAdminBundle::ajax_layout.html.twig
-#        knp_menu_template: AppBundle:AdminMenu:custom_knp_menu.html.twig
+        knp_menu_template: AppBundle:AdminMenu:custom_knp_menu.html.twig
         # default actions templates, should extend a global templates
         list:    SonataAdminBundle:CRUD:list.html.twig
         show:    SonataAdminBundle:CRUD:show.html.twig
@@ -155,15 +155,10 @@ sonata_admin:
         blocks:
             # display a dashboard block
             -
-              position: left
-              type: sonata.admin.block.admin_list
-              settings:
-                  groups: [Menu]
-            -
               position: top
               type: sonata.admin.block.admin_list
               settings:
-                  groups: [User, Ads]
+                  groups: [Menu]
         groups:
             Menu:
                 label: ~
@@ -172,23 +167,9 @@ sonata_admin:
                 items:
                     - app.admin.regions
                     - app.admin.types
-                roles: [ ROLE_MODERATOR, ROLE_SUPER_ADMIN ]
-
-            Ads:
-                label: ~
-                label_catalogue: ~
-                icon: '<i class="fa fa-list-alt"></i>'
-                items:
                     - app.admin.ads
-                roles: [ ROLE_MODERATOR, ROLE_ADMIN, ROLE_SUPER_ADMIN, ROLE_CLIENT ]
-
-            User:
-                label: ~
-                label_catalogue: ~
-                icon: '<i class="fa fa-list-alt"></i>'
-                items:
                     - app.admin.user
-                roles: [ ROLE_MODERATOR, ROLE_ADMIN, ROLE_SUPER_ADMIN ]
+                roles: [  ROLE_MODERATOR, ROLE_ADMIN, ROLE_SUPER_ADMIN, ROLE_CLIENT ]
 
 # stfo doctrine extensions
 stof_doctrine_extensions:
