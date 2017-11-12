@@ -360,7 +360,7 @@ class UserAdmin extends Admin
             $query->setParameter('rls2', '%ROLE_MODERATOR%');
 
 
-        }else {
+        }elseif($securityContext->isGranted('ROLE_SUPER_ADMIN') === true) {
             $query->andWhere(
                 $query->expr()->orX(
                     $query->expr()->like($query->getRootAliases()[0] . '.roles', ':rls1'),
@@ -372,7 +372,7 @@ class UserAdmin extends Admin
             $query->setParameter('rls2', '%ROLE_MODERATOR%');
             $query->setParameter('rls3', '%ROLE_ADMIN%');
         };
-        
+
         return $query;
     }
 }
