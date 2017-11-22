@@ -4,6 +4,8 @@ admin:
       ads_old: АРХИВНЫЕ ОБЪЕКТЫ
       user: АКТУАЛЬНЫЕ КЛИЕНТЫ
       user_old: АРХИВНЫЕ КЛИЕНТЫ
+      areas: РАЙОНЫ
+      prop_types: ВИДЫ НЕДВИЖИМОСТИ
   groups:
       ads: асфдасда
   witget:

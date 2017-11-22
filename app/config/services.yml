@@ -30,13 +30,13 @@ services:
         class: AppBundle\Admin\TypesAdmin
         arguments: [~, AppBundle\Entity\Types, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: admin.groups.ads, label: Виды недвижимости }
+            - {name: sonata.admin, manager_type: orm, group: admin.groups.ads, label: admin.labels.prop_types }
 
     app.admin.regions:
         class: AppBundle\Admin\RegionsAdmin
         arguments: [~, AppBundle\Entity\Regions, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: admin.groups.ads , label: Pайоны }
+            - {name: sonata.admin, manager_type: orm, group: admin.groups.ads , label: admin.labels.areas }
 
     app.admin.user:
         class: AppBundle\Admin\UserAdmin

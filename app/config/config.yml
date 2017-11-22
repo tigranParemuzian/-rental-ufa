@@ -7,7 +7,7 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
       items_per_page: 10
-      locale: ru
+      locale: en
       languages:
          en: English
          ru: Русский

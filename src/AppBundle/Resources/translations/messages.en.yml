@@ -1,10 +1,18 @@
 admin:
   labels:
-      ads: Ads
+      ads: ACTUAL OBJECTS
+      ads_old: ARCHIVING OBJECTS
+      user: ACTUAL CLIENTS
+      user_old: ARCHIVING CLIENT
+      areas: AREAS
+      prop_types: PROPERTY TYPES
   groups:
-      ads: asasd
-  address: Addres -
-  architect: Architect -
-  importance: Importance -
-  footer: All rights reserved.
-
+      ads: Ads
+  witget:
+      main: Main
+      main_descr: Main settings
+      parent: Parent
+      parent_descr: Parent
+      finance: Finance
+      settings: Settings
+      intersts: Interests

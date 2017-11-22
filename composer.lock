@@ -1956,16 +1956,16 @@
         },
         {
             "name": "jms/serializer",
-            "version": "1.9.1",
+            "version": "1.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/serializer.git",
-                "reference": "e708d6ef549044974b60a57fdcec2fa165436d57"
+                "reference": "995270cddce65b9c14a58c11cf77116d28d9336c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/e708d6ef549044974b60a57fdcec2fa165436d57",
-                "reference": "e708d6ef549044974b60a57fdcec2fa165436d57",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/995270cddce65b9c14a58c11cf77116d28d9336c",
+                "reference": "995270cddce65b9c14a58c11cf77116d28d9336c",
                 "shasum": ""
             },
             "require": {
@@ -2035,7 +2035,7 @@
                 "serialization",
                 "xml"
             ],
-            "time": "2017-10-27T07:15:54+00:00"
+            "time": "2017-11-22T16:45:19+00:00"
         },
         {
             "name": "jms/serializer-bundle",
@@ -3396,16 +3396,16 @@
         },
         {
             "name": "sonata-project/admin-bundle",
-            "version": "3.25.1",
+            "version": "3.26.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "d649f27e90f0f28eb5cfd53f8e8f75e918c9aa5e"
+                "reference": "c8bcde5cc580abc1ca8bed255ea3fb93d8a0ded5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/d649f27e90f0f28eb5cfd53f8e8f75e918c9aa5e",
-                "reference": "d649f27e90f0f28eb5cfd53f8e8f75e918c9aa5e",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/c8bcde5cc580abc1ca8bed255ea3fb93d8a0ded5",
+                "reference": "c8bcde5cc580abc1ca8bed255ea3fb93d8a0ded5",
                 "shasum": ""
             },
             "require": {
@@ -3490,7 +3490,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2017-11-20T09:39:55+00:00"
+            "time": "2017-11-22T10:05:37+00:00"
         },
         {
             "name": "sonata-project/block-bundle",
