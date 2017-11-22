@@ -23,11 +23,23 @@ security:
               - ROLE_APP_ADMIN_USER_LIST
               - ROLE_APP_ADMIN_USER_VIEW
 
+              - ROLE_APP_ADMIN_ARCHIVE_USER_CREATE
+              - ROLE_APP_ADMIN_ARCHIVE_USER_DELETE
+              - ROLE_APP_ADMIN_ARCHIVE_USER_EDIT
+              - ROLE_APP_ADMIN_ARCHIVE_USER_LIST
+              - ROLE_APP_ADMIN_ARCHIVE_USER_VIEW
+
               - ROLE_APP_ADMIN_ADS_CREATE
               - ROLE_APP_ADMIN_ADS_DELETE
               - ROLE_APP_ADMIN_ADS_EDIT
               - ROLE_APP_ADMIN_ADS_LIST
               - ROLE_APP_ADMIN_ADS_VIEW
+
+              - ROLE_APP_ADMIN_DISABLES_CREATE
+              - ROLE_APP_ADMIN_DISABLES_DELETE
+              - ROLE_APP_ADMIN_DISABLES_EDIT
+              - ROLE_APP_ADMIN_DISABLES_LIST
+              - ROLE_APP_ADMIN_DISABLES_VIEW
 
          ROLE_ADMIN:
               - ROLE_USER
@@ -39,11 +51,23 @@ security:
               - ROLE_APP_ADMIN_USER_LIST
               - ROLE_APP_ADMIN_USER_VIEW
 
+              - ROLE_APP_ADMIN_ARCHIVE_USER_CREATE
+              - ROLE_APP_ADMIN_ARCHIVE_USER_DELETE
+              - ROLE_APP_ADMIN_ARCHIVE_USER_EDIT
+              - ROLE_APP_ADMIN_ARCHIVE_USER_LIST
+              - ROLE_APP_ADMIN_ARCHIVE_USER_VIEW
+
               - ROLE_APP_ADMIN_ADS_CREATE
               - ROLE_APP_ADMIN_ADS_DELETE
               - ROLE_APP_ADMIN_ADS_EDIT
               - ROLE_APP_ADMIN_ADS_LIST
               - ROLE_APP_ADMIN_ADS_VIEW
+
+              - ROLE_APP_ADMIN_DISABLES_CREATE
+              - ROLE_APP_ADMIN_DISABLES_DELETE
+              - ROLE_APP_ADMIN_DISABLES_EDIT
+              - ROLE_APP_ADMIN_DISABLES_LIST
+              - ROLE_APP_ADMIN_DISABLES_VIEW
 
          ROLE_SUPER_ADMIN: ROLE_ADMIN
 
