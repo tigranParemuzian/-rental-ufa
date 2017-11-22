@@ -7,7 +7,10 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
       items_per_page: 10
-      locale: en
+      locale: ru
+      languages:
+         en: English
+         ru: Русский
       cck_editor_list:
         - About
 
@@ -168,7 +171,9 @@ sonata_admin:
                     - app.admin.regions
                     - app.admin.types
                     - app.admin.ads
+                    - app.admin.disables
                     - app.admin.user
+                    - app.admin.archive.user
                 roles: [  ROLE_MODERATOR, ROLE_ADMIN, ROLE_SUPER_ADMIN, ROLE_CLIENT ]
 
 # stfo doctrine extensions
@@ -207,6 +212,12 @@ stof_doctrine_extensions:
 #    default_locale: en
 #    locales: [en]
 #    required_locales: [en]
+
+jms_i18n_routing:
+    default_locale: ru
+    locales: [en, ru]
+    strategy: prefix_except_default
+
 
 # fos rest bundle
 fos_rest:

@@ -23,9 +23,20 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * Class UserAdmin
  * @package AppBundle\Admin
  */
-class UserAdmin extends Admin
+class ArchveUserAdmin extends Admin
 {
 
+
+    protected $baseRoutePattern = 'user-old';
+    protected $baseRouteName = 'user-old';
+
+    /**
+     * @param RouteCollection $collection
+     */
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->clearExcept(array('list'));
+    }
 
 
     private $roles;
@@ -122,13 +133,13 @@ class UserAdmin extends Admin
             )
             ->add('enabled', null, array('editable'=>true))
 //            ->add('created')
-            ->add('_action', 'actions', array(
+            /*->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 )
-            ))
+            ))*/
         ;
     }
 
@@ -149,7 +160,7 @@ class UserAdmin extends Admin
             ->with('admin.witget.main', array(
                 'class' =>'col-sm-3',
                 'box-class' => 'box box-solid box-danger',
-               /* 'description'=>'Products main create part'*/
+                'description'=>'Products main create part'
             ))
             ->add('firstName', 'text', ['label'=>'Имя'])
             ->add('lastName', 'text', ['label'=>'Last Name'])
@@ -157,10 +168,10 @@ class UserAdmin extends Admin
             ->add('email')
             ->add('username', 'text', ['label'=>'Phone'])
             ->end()
-            ->with('admin.witget.finance', array(
+            ->with('Finance', array(
                 'class' =>'col-sm-3',
-                'box-class' => 'box box-solid box-danger'/*,
-                'description'=>'Products main create part'*/
+                'box-class' => 'box box-solid box-danger',
+                'description'=>'Products main create part'
             ))
             ->add('contract')
             ->add('contractCost')
@@ -174,10 +185,10 @@ class UserAdmin extends Admin
                 'attr'=>['style' => 'width: 100px !important']
             ))
             ->end()
-            ->with('admin.witget.settings', array(
+            ->with('Finance Parent', array(
                 'class' =>'col-sm-3',
-                'box-class' => 'box box-solid box-danger'/*,
-                'description'=>'Products main create part'*/
+                'box-class' => 'box box-solid box-danger',
+                'description'=>'Products main create part'
             ))
             ->add('databasePermission')
             ->add('inhabited')
@@ -185,10 +196,10 @@ class UserAdmin extends Admin
             ->add('enabled')
             ->add('problematic')
             ->end()
-            ->with('admin.witget.intersts', array(
+            ->with('Info', array(
                 'class' =>'col-sm-3',
-                'box-class' => 'box box-solid box-danger'/*,
-                'description'=>'Products main create part'*/
+                'box-class' => 'box box-solid box-danger',
+                'description'=>'Products main create part'
             ))
             ->add('types')
             ->add('priceFrom')
@@ -344,7 +355,6 @@ class UserAdmin extends Admin
 
         $securityContext = $this->getConfigurationPool()->getContainer()->get('security.authorization_checker');
 
-
         $query->andWhere(
             $query->expr()->eq($query->getRootAliases()[0] . '.enabled', ':st')
         );
@@ -383,7 +393,9 @@ class UserAdmin extends Admin
             $query->setParameter('rls3', '%ROLE_ADMIN%');
         };
 
-        $query->setParameter('st', true);
+
+        $query->setParameter('st', false);
+
         return $query;
     }
 }

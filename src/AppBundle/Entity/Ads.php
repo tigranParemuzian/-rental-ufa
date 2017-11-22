@@ -12,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Ads
 {
+    const IS_SHOW = 0, IS_ARCHIVE = 1, IS_DONE = 2;
+
     /**
      * @var int
      *

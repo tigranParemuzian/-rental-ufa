@@ -16,24 +16,36 @@ services:
 
     app.admin.ads:
         class: AppBundle\Admin\AdsAdmin
-        arguments: [~, AppBundle\Entity\Ads, SonataAdminBundle:CRUD]
+        arguments: [~, AppBundle\Entity\Ads,  SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: Ads, label: АКТУАЛЬНЫЕ ОБЪЕКТЫ}
+            - {name: sonata.admin, manager_type: orm, group: admin.groups.ads , label: admin.labels.ads }
+
+    app.admin.disables:
+        class: AppBundle\Admin\OldAdsAdmin
+        arguments: [~,  AppBundle\Entity\Ads, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin.groups.ads , label: admin.labels.ads_old }
 
     app.admin.types:
         class: AppBundle\Admin\TypesAdmin
         arguments: [~, AppBundle\Entity\Types, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: Ads, label: Виды недвижимости }
+            - {name: sonata.admin, manager_type: orm, group: admin.groups.ads, label: Виды недвижимости }
 
     app.admin.regions:
         class: AppBundle\Admin\RegionsAdmin
         arguments: [~, AppBundle\Entity\Regions, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: Ads, label: Pайоны }
+            - {name: sonata.admin, manager_type: orm, group: admin.groups.ads , label: Pайоны }
 
     app.admin.user:
         class: AppBundle\Admin\UserAdmin
         arguments: [~, AppBundle\Entity\User, SonataAdminBundle:CRUD]
         tags:
-            - {name: sonata.admin, manager_type: orm, group: User, label: АКТУАЛЬНЫЕ КЛИЕНТЫ}
+            - {name: sonata.admin, manager_type: orm, group: admin.groups.ads , label: admin.labels.user }
+
+    app.admin.archive.user:
+        class: AppBundle\Admin\ArchveUserAdmin
+        arguments: [~, AppBundle\Entity\User, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin.groups.ads , label: admin.labels.user_old }

@@ -25,6 +25,7 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "jms/security-extra-bundle": "^1.6",
         "jms/serializer-bundle": "^1.1",
+        "jms/i18n-routing-bundle": "^2.0",
         "knplabs/knp-paginator-bundle": "^2.5",
         "knplabs/knp-snappy-bundle": "^1.4",
         "leafo/scssphp": "^0.6.7",

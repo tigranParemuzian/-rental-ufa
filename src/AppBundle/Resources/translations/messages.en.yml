@@ -1,0 +1,10 @@
+admin:
+  labels:
+      ads: Ads
+  groups:
+      ads: asasd
+  address: Addres -
+  architect: Architect -
+  importance: Importance -
+  footer: All rights reserved.
+

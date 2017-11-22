@@ -18,8 +18,19 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-class AdsAdmin extends Admin
+class OldAdsAdmin extends Admin
 {
+
+    protected $baseRoutePattern = 'ads-old';
+    protected $baseRouteName = 'ads-old';
+
+    /**
+     * @param RouteCollection $collection
+     */
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->clearExcept(array('list'));
+    }
 
     protected $renovation;
     protected $state;
@@ -28,7 +39,7 @@ class AdsAdmin extends Admin
     {
         parent::__construct($code, $class, $baseControllerName);
         $this->renovation = ['Евро', 'Косметический', 'Хороший'];
-        $this->state = ['ПОКАЗ', 'АРХИВ', 'СДАН'];
+        $this->state = [Ads::IS_SHOW=>'ПОКАЗ', Ads::IS_ARCHIVE=>'АРХИВ', Ads::IS_DONE=>'СДАН'];
     }
 
     protected function configureFormFields(FormMapper $formMapper)
@@ -46,7 +57,7 @@ class AdsAdmin extends Admin
             ->add('price', 'text', ['label'=>'Цена'])
             ->add('state', 'choice', ['choices'=>$this->state, 'label'=>'Состояние'])
             ->add('description','textarea', ['label'=>'Описание'])
-->end()
+            ->end()
             ->with('admin.witget.parent', array(
                 'class' => 'col-sm-6',
                 'box-class' => 'box box-solid box-danger'
@@ -92,12 +103,12 @@ class AdsAdmin extends Admin
             ->add('types', null, ['label'=>' Тип жилья'])
             ->add('notAvalible', null, ['label'=>' Недоступен', 'editable'=>true])
             ->add('notConnected', null, ['label'=>' Неотвечает', 'editable'=>true])
-            ->add('_action', 'actions',
+            /*->add('_action', 'actions',
                 array('actions' =>
                     array(
                         'delete' => array(), 'edit' => array()
                     )
-                ));
+                ))*/;
 
     }
 
@@ -162,12 +173,10 @@ class AdsAdmin extends Admin
 
         $query = parent::createQuery($context);
 
-        $query->andWhere(
-            $query->expr()->in($query->getRootAliases()[0] . '.state', ':st')
-        );
-
-
-        $query->setParameter('st', [Ads::IS_SHOW, Ads::IS_DONE]);
+                $query->andWhere(
+                    $query->expr()->eq($query->getRootAliases()[0] . '.state', ':st')
+                );
+            $query->setParameter('st', Ads::IS_ARCHIVE);
 
         return $query;
     }

@@ -35,7 +35,7 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
-//            new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
+            new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),

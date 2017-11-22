@@ -1,0 +1,16 @@
+admin:
+  labels:
+      ads: АКТУАЛЬНЫЕ ОБЪЕКТЫ
+      ads_old: АРХИВНЫЕ ОБЪЕКТЫ
+      user: АКТУАЛЬНЫЕ КЛИЕНТЫ
+      user_old: АРХИВНЫЕ КЛИЕНТЫ
+  groups:
+      ads: асфдасда
+  witget:
+      main: Главный
+      main_descr: Основные параметры
+      parent: Родитель
+      parent_descr: Родитель
+      finance: Финансы
+      settings: Настройки
+      intersts: Интересы
