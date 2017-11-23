@@ -1,3 +1,6 @@
+ads:
+  labels:
+    name: Имя
 admin:
   labels:
       ads: АКТУАЛЬНЫЕ ОБЪЕКТЫ
@@ -16,3 +19,6 @@ admin:
       finance: Финансы
       settings: Настройки
       intersts: Интересы
+
+
+

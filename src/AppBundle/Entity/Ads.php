@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Ads
@@ -41,6 +43,7 @@ class Ads
      * @var string
      *
      * @ORM\Column(name="first_name", type="string", length=255)
+     * @Gedmo\Translatable
      */
     private $firstName;
 
@@ -48,6 +51,7 @@ class Ads
      * @var string
      *
      * @ORM\Column(name="last_name", type="string", length=255)
+     * @Gedmo\Translatable
      */
     private $lastName;
 
@@ -55,6 +59,7 @@ class Ads
      * @var string
      *
      * @ORM\Column(name="father_name", type="string", length=255)
+     * @Gedmo\Translatable
      */
     private $fatherName;
 
@@ -69,6 +74,7 @@ class Ads
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Gedmo\Translatable
      */
     private $description;
 
@@ -141,6 +147,21 @@ class Ads
      * @ORM\JoinColumn(name="type_id", referencedColumnName="id")
      */
     private $types;
+
+    /**
+     * @ORM\OneToMany(
+     *     targetEntity="AppBundle\Entity\Translation\AdsTranslation",
+     * 	mappedBy="object",
+     * 	cascade={"persist", "remove"}
+     * )
+     * @Assert\Valid(deep = true)
+     */
+    private $translations;
+
+    public function __construct()
+    {
+        $this->translations = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     public function __toString()
     {
@@ -548,5 +569,31 @@ class Ads
     public function setNotConnected($notConnected)
     {
         $this->notConnected = $notConnected;
+    }
+
+    /**
+     * Set translations
+     *
+     * @param ArrayCollection $translations
+     * @return Product
+     */
+    public function setTranslations($translations)
+    {
+        foreach ($translations as $translation) {
+            $translation->setObject($this);
+        }
+
+        $this->translations = $translations;
+        return $this;
+    }
+
+    /**
+     * Get translations
+     *
+     * @return ArrayCollection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
     }
 }

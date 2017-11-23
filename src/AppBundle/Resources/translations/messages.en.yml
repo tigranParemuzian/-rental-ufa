@@ -1,3 +1,6 @@
+ads:
+  labels:
+    name: Name
 admin:
   labels:
       ads: ACTUAL OBJECTS

@@ -118,7 +118,7 @@ class UserAdmin extends Admin
             ->add('roles', 'choice', array(
                 'choices'  => $this->getRolesPerms(),
                 'multiple' => true,
-                'template' => 'AppBundle:CRUD:user_rols_list.html.twig')
+                'template' => 'AppBundle:CRUD:user_roles_list.html.twig')
             )
             ->add('enabled', null, array('editable'=>true))
 //            ->add('created')
