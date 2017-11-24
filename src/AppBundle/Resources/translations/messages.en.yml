@@ -1,6 +1,3 @@
-ads:
-  labels:
-    name: Name
 admin:
   labels:
       ads: ACTUAL OBJECTS
@@ -19,3 +16,5 @@ admin:
       finance: Finance
       settings: Settings
       intersts: Interests
+Name: Yuuuhu
+

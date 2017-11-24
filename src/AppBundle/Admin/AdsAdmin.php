@@ -20,7 +20,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class AdsAdmin extends Admin
 {
-
+    protected $translationDomain ='ads';
     protected $renovation;
     protected $state;
 
@@ -39,13 +39,13 @@ class AdsAdmin extends Admin
                 'box-class' => 'box box-solid box-danger'
                 /*'description' => 'admin.witget.main_descr'*/
             ))
-            ->add('firstName', 'text', ['label'=>'Имя'])
-            ->add('lastName', 'text', ['label'=>'Фамилия'])
-            ->add('fatherName','text', ['label'=>'Отчество'])
-            ->add('phone', 'text', ['label'=>'Телефон'])
-            ->add('price', 'text', ['label'=>'Цена'])
-            ->add('state', 'choice', ['choices'=>$this->state, 'label'=>'Состояние'])
-            ->add('description','textarea', ['label'=>'Описание'])
+            ->add('firstName', 'text', ['label'=>'firstName'])
+            ->add('lastName', 'text', ['label'=>'lastName'])
+            ->add('fatherName','text', ['label'=>'fatherName'])
+            ->add('phone', 'text', ['label'=>'phone'])
+            ->add('price', 'text', ['label'=>'price'])
+            ->add('state', 'choice', ['choices'=>$this->state, 'label'=>'state'])
+            ->add('description','textarea', ['label'=>'description'])
 ->end()
             ->with('admin.witget.parent', array(
                 'class' => 'col-sm-6',
@@ -53,16 +53,16 @@ class AdsAdmin extends Admin
                 /*'description' => 'admin.witget.main_descr'*/
             ))
 
-            ->add('region', null, ['label'=>'Район'])
-            ->add('types', null, ['label'=>' Тип жилья'])
-            ->add('street', 'text', ['label'=>'Улица'])
-            ->add('house', 'text', ['label'=>'Дом'])
-            ->add('kb', 'text', ['label'=>'Кв'])
-            ->add('sqMeter', 'text', ['label'=>'Площадь'])
-            ->add('renovation', 'choice', ['choices'=>$this->renovation, 'label'=>' Ремонт'])
-            ->add('furnisher', null, ['label'=>' Мебель'])
-            ->add('notAvalible', null, ['label'=>' Недоступен'])
-            ->add('notConnected', null, ['label'=>' Неотвечает'])
+            ->add('region', null, ['label'=>'region'])
+            ->add('types', null, ['label'=>'types'])
+            ->add('street', 'text', ['label'=>'street'])
+            ->add('house', 'text', ['label'=>'house'])
+            ->add('kb', 'text', ['label'=>'kb'])
+            ->add('sqMeter', 'text', ['label'=>'sqMeter'])
+            ->add('renovation', 'choice', ['choices'=>$this->renovation, 'label'=>'renovation'])
+            ->add('furnisher', null, ['label'=>'furnisher'])
+            ->add('notAvalible', null, ['label'=>'notAvalible'])
+            ->add('notConnected', null, ['label'=>'notConnected'])
             ->end()
         ;
 

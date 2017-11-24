@@ -162,7 +162,7 @@ class ArchveUserAdmin extends Admin
                 'box-class' => 'box box-solid box-danger',
                 'description'=>'Products main create part'
             ))
-            ->add('firstName', 'text', ['label'=>'Имя'])
+            ->add('firstName', 'text', ['label'=>'Name'])
             ->add('lastName', 'text', ['label'=>'Last Name'])
             ->add('patronymic', 'text', ['label'=>'Patronymic'])
             ->add('email')

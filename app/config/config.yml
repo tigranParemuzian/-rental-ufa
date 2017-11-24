@@ -50,7 +50,7 @@ twig:
             - bootstrap_3_layout.html.twig
             - SonataCoreBundle:Form:datepicker.html.twig
             - AppBundle:Form:icon.html.twig
-            - A2lixTranslationFormBundle::form.html.twig
+           # - A2lixTranslationFormBundle::form.html.twig
 
 ## Assetic Configuration
 #assetic:

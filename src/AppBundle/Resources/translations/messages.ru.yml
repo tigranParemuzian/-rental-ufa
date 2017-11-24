@@ -1,6 +1,4 @@
-ads:
-  labels:
-    name: Имя
+name: russ
 admin:
   labels:
       ads: АКТУАЛЬНЫЕ ОБЪЕКТЫ

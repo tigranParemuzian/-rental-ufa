@@ -1,0 +1,28 @@
+admin:
+  labels:
+      ads: ACTUAL OBJECTS
+  groups:
+      ads: Ads
+  witget:
+      main: Main
+      main_descr: Main settings
+      parent: Parent
+      parent_descr: Parent
+firstName: Firstname
+lastName: Lastname
+fatherName: Fathername
+phone: Phone
+price: Price
+state: State
+description: Description
+region: Region
+types: Types
+street: Street
+house: House
+kb: Kb
+sqMeter: Sqmeter
+renovation: Renovation
+furnisher: Furnisher
+notAvalible: Not Available
+notConnected: Not Connected
+euro: Euro
