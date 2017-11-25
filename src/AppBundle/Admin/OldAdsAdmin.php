@@ -84,31 +84,32 @@ class OldAdsAdmin extends Admin
      */
     protected function configureListFields(ListMapper $list)
     {
+
         $list
             ->add('id')
-            ->add('price', null, ['label'=>'Цена', 'editable'=>true])
-            ->add('state', 'choice', ['choices'=>$this->state, 'label'=>'Состояние', 'editable'=>true])
-            ->add('firstName', null, ['label'=>'Имя', 'editable'=>true])
-            ->add('lastName', null, ['label'=>'Фамилия', 'editable'=>true])
-            ->add('fatherName',null, ['label'=>'Отчество', 'editable'=>true])
-            ->add('phone', null, ['label'=>'Телефон', 'editable'=>true])
-            ->add('description','textarea', ['label'=>'Описание', 'editable'=>true])
-            ->add('street', 'text', ['label'=>'Улица', 'editable'=>true])
-            ->add('house', 'text', ['label'=>'Дом', 'editable'=>true])
-            ->add('kb', null, ['label'=>'Кв', 'editable'=>true])
-            ->add('sqMeter', null, ['label'=>'Площадь', 'editable'=>true])
-            ->add('renovation', 'choice', ['choices'=>$this->renovation, 'label'=>' Ремонт', 'editable'=>true])
-            ->add('furnisher', null, ['label'=>' Мебель', 'editable'=>true])
-            ->add('region', null, ['label'=>'Район'])
-            ->add('types', null, ['label'=>' Тип жилья'])
-            ->add('notAvalible', null, ['label'=>' Недоступен', 'editable'=>true])
-            ->add('notConnected', null, ['label'=>' Неотвечает', 'editable'=>true])
-            /*->add('_action', 'actions',
+            ->add('price', null, ['label'=>'admin.ads.price', 'editable'=>true])
+            ->add('state', 'choice', ['choices'=>$this->state, 'label'=>'admin.ads.state', 'editable'=>true])
+            ->add('firstName', null, ['label'=>'admin.ads.firstName', 'editable'=>true])
+            ->add('lastName', null, ['label'=>'admin.ads.lastName', 'editable'=>true])
+            ->add('fatherName',null, ['label'=>'admin.ads.fatherName', 'editable'=>true])
+            ->add('phone', null, ['label'=>'admin.ads.phone', 'editable'=>true])
+            ->add('description','textarea', ['label'=>'admin.ads.description', 'editable'=>true])
+            ->add('street', 'text', ['label'=>'admin.ads.street', 'editable'=>true])
+            ->add('house', 'text', ['label'=>'admin.ads.house', 'editable'=>true])
+            ->add('kb', null, ['label'=>'admin.ads.kb', 'editable'=>true])
+            ->add('sqMeter', null, ['label'=>'admin.ads.sqMeter', 'editable'=>true])
+            ->add('renovation', 'choice', ['choices'=>$this->renovation, 'label'=>'admin.ads.renovation', 'editable'=>true])
+            ->add('furnisher', null, ['label'=>'admin.ads.furnisher', 'editable'=>true])
+            ->add('region', null, ['label'=>'admin.ads.region'])
+            ->add('types', null, ['label'=>'admin.ads.types'])
+            ->add('notAvalible', null, ['label'=>'admin.ads.notAvalible', 'editable'=>true])
+            ->add('notConnected', null, ['label'=>'admin.ads.notConnected', 'editable'=>true])
+            ->add('_action', 'actions',
                 array('actions' =>
                     array(
                         'delete' => array(), 'edit' => array()
                     )
-                ))*/;
+                ));
 
     }
 
@@ -116,25 +117,26 @@ class OldAdsAdmin extends Admin
     {
         $datagridMapper
             ->add('id')
-            ->add('price', null, ['label'=>'Цена'])
-//            ->add('state', 'choice', ['choices'=>$this->state, 'label'=>'Состояние'])
-            ->add('firstName', null, ['label'=>'Имя'])
-            ->add('lastName', null, ['label'=>'Фамилия'])
-            ->add('fatherName',null, ['label'=>'Отчество'])
-            ->add('phone', null, ['label'=>'Телефон'])
-            ->add('description',null, ['label'=>'Описание'])
-            ->add('street', null, ['label'=>'Улица'])
-            ->add('house', null, ['label'=>'Дом'])
-            ->add('kb', null, ['label'=>'Кв'])
-            ->add('sqMeter', null, ['label'=>'Площадь'])
-//            ->add('renovation', null, 'choice', ['choices'=>$this->renovation, 'label'=>' Ремонт'])
-            ->add('furnisher', null, ['label'=>' Мебель'])
-            ->add('region', null, ['label'=>'Район'])
-            ->add('types', null, ['label'=>' Тип жилья'])
-            ->add('notAvalible', null, ['label'=>' Недоступен'])
-            ->add('notConnected', null, ['label'=>' Неотвечает'])
+            ->add('price', null, ['label'=>'admin.ads.price', 'editable'=>true])
+            ->add('state', 'doctrine_orm_choice', ['label' => 'admin.ads.state'], 'choice', ['choices'=>$this->state, 'expanded' => true,
+                'multiple' => true])
+            ->add('firstName', null, ['label'=>'admin.ads.firstName', 'editable'=>true])
+            ->add('lastName', null, ['label'=>'admin.ads.lastName', 'editable'=>true])
+            ->add('fatherName',null, ['label'=>'admin.ads.fatherName', 'editable'=>true])
+            ->add('phone', null, ['label'=>'admin.ads.phone', 'editable'=>true])
+            ->add('street', null, ['label'=>'admin.ads.street', 'editable'=>true])
+            ->add('house', null, ['label'=>'admin.ads.house', 'editable'=>true])
+            ->add('kb', null, ['label'=>'admin.ads.kb', 'editable'=>true])
+            ->add('sqMeter', null, ['label'=>'admin.ads.sqMeter', 'editable'=>true])
+            ->add('renovation', 'doctrine_orm_choice',['label'=>'admin.ads.renovation'],'choice', ['choices'=>$this->renovation,  'expanded' => true,  'multiple' => true])
+            ->add('furnisher', null, ['label'=>'admin.ads.furnisher', 'editable'=>true])
+            ->add('region', null, ['label'=>'admin.ads.region'])
+            ->add('types', null, ['label'=>'admin.ads.types'])
+            ->add('notAvalible', null, ['label'=>'admin.ads.notAvalible', 'editable'=>true])
+            ->add('notConnected', null, ['label'=>'admin.ads.notConnected', 'editable'=>true])
         ;
     }
+
 
     /**
      * @param ShowMapper $show
