@@ -110,17 +110,17 @@ class UserAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('email')
-            ->add('username', null, ['label'=>'Phone'])
-            ->add('lastName')
-            ->add('firstName')
+            ->addIdentifier('email', null, ['label'=>'admin.ads.email'])
+            ->add('username', null, ['label'=>'admin.ads.phone'])
+            ->add('lastName', null, ['label'=>'admin.ads.lastName'])
+            ->add('firstName', null, ['label'=>'admin.ads.firstName'])
 //            ->add('phone')
-            ->add('roles', 'choice', array(
-                'choices'  => $this->getRolesPerms(),
-                'multiple' => true,
-                'template' => 'AppBundle:CRUD:user_roles_list.html.twig')
-            )
-            ->add('enabled', null, array('editable'=>true))
+//            ->add('roles', 'choice', array(
+//                'choices'  => $this->getRolesPerms(),
+//               /* 'multiple' => true,*/
+//                'template' => 'AppBundle:CRUD:user_roles_list.html.twig')
+//            )
+            ->add('enabled', null, array('editable'=>true, 'label'=>'admin.ads.enabled'))
 //            ->add('created')
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -151,26 +151,26 @@ class UserAdmin extends Admin
                 'box-class' => 'box box-solid box-danger',
                /* 'description'=>'Products main create part'*/
             ))
-            ->add('firstName', 'text', ['label'=>'Имя'])
-            ->add('lastName', 'text', ['label'=>'Last Name'])
+            ->add('firstName', 'text', ['label'=>'admin.ads.firstName'])
+            ->add('lastName', 'text', ['label'=>'admin.ads.lastName'])
             ->add('patronymic', 'text', ['label'=>'Patronymic'])
-            ->add('email')
-            ->add('username', 'text', ['label'=>'Phone'])
+            ->add('email', null, ['label'=>'admin.ads.email'])
+            ->add('username', 'text', ['label'=>'admin.ads.phone'])
             ->end()
             ->with('admin.witget.finance', array(
                 'class' =>'col-sm-3',
                 'box-class' => 'box box-solid box-danger'/*,
                 'description'=>'Products main create part'*/
             ))
-            ->add('contract')
-            ->add('contractCost')
+            ->add('contract', 'text', ['label'=>'admin.ads.contract'])
+            ->add('contractCost', 'text', ['label'=>'admin.ads.contract_cost'])
             ->add('paymentDate','sonata_type_date_picker', array(
                 'dp_side_by_side'       => false,
                 'dp_use_current'        => false,
                 'widget' => 'single_text',
                 'format' => 'y-dd-MM',
                 'required' => false,
-                'label'=>'SUP date',
+                'label'=>'admin.ads.contract_date',
                 'attr'=>['style' => 'width: 100px !important']
             ))
             ->end()
@@ -179,32 +179,33 @@ class UserAdmin extends Admin
                 'box-class' => 'box box-solid box-danger'/*,
                 'description'=>'Products main create part'*/
             ))
-            ->add('databasePermission')
-            ->add('inhabited')
-            ->add('sentPassword')
-            ->add('enabled')
-            ->add('problematic')
+            ->add('databasePermission', null, ['label'=>'admin.ads.database_permission'])
+            ->add('inhabited', null, ['label'=>'admin.ads.inhabited'])
+            ->add('sentPassword', null, ['label'=>'admin.ads.sent_password'])
+            ->add('enabled', null, ['label'=>'admin.ads.enabled'])
+            ->add('problematic', null, ['label'=>'admin.ads.problematic'])
             ->end()
             ->with('admin.witget.intersts', array(
                 'class' =>'col-sm-3',
                 'box-class' => 'box box-solid box-danger'/*,
                 'description'=>'Products main create part'*/
             ))
-            ->add('types')
-            ->add('priceFrom')
-            ->add('regions')
-            ->add('priceTo')
+            ->add('types', null, ['label'=>'admin.ads.types'])
+            ->add('priceFrom', null, ['label'=>'admin.ads.price_from'])
+            ->add('regions', null, ['label'=>'admin.ads.regions'])
+            ->add('priceTo', null, ['label'=>'admin.ads.price_to'])
             ->add('roles', 'choice', array(
                 'choices'  => $this->getRolesPerms(),
-                'multiple' => true
+                'multiple' => true,
+            'label'=>'admin.ads.roles'
             ))
             ->add('plainPassword', 'repeated', array('first_name' => 'password',
                 'required' => false,
                 'second_name' => 'confirm',
                 'type' => 'password',
                 'invalid_message' => 'Passwords do not match',
-                'first_options' => array('label' => 'Password'),
-                'second_options' => array('label' => 'Repeat Password')))
+                'first_options' => array('label' => 'Пароль'),
+                'second_options' => array('label' => 'Повторите пароль')))
             ->end()
         ;
     }

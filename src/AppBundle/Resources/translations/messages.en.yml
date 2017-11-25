@@ -18,25 +18,27 @@ admin:
       intersts: Interests
 
   ads:
-    firstName: Имя
-    lastName: Фамилия
-    fatherName: Отчество
-    phone: Телефон
-    price: Цена
-    state: Состояние
-    description: Описание
-    region:  Район
-    types:  Тип жилья
-    street:  Улица
-    house:  Дом
-    kb:  Кв
-    sqMeter:  Площадь
-    renovation:  Ремонт
-    furnisher:  Мебель
-    notAvalible:  Недоступен
-    notConnected:  Неотвечает
-    euro: Евро
+      firstName: First Name
+      lastName: Last Name
+      fatherName: Father Name
+      phone: Phone
+      price: Price
+      state: State
+      description: Description
+      region:  Region
+      types:  Types
+      street:  Street
+      house:  House
+      kb:  KB
+      sqMeter:  Sq Meter
+      renovation:  Renovation
+      furnisher:  Furnisher
+      notAvalible:  Not Avalible
+      notConnected:  Not Connected
+      euro: Euro
   user:
+
+Ads List: Ads List
 Name: Yuuuhu
 
 

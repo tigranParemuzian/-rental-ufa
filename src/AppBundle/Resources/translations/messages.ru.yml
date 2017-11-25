@@ -23,6 +23,15 @@ admin:
       fatherName: Отчество
       phone: Телефон
       price: Цена
+      email: Эл. адрес
+      contract: Договор
+      contract_cost: Стоимость контракта
+      contract_date: Дата контракта
+      database_permission: Разрешение базы данных           
+      inhabited: Обитаемый
+      sent_password: Отправленный пароль
+      enabled: Включено
+      problematic: Проблематичный
       state: Состояние
       description: Описание
       region:  Район
@@ -36,6 +45,13 @@ admin:
       notAvalible:  Недоступен
       notConnected:  Неотвечает
       euro: Евро
-
+      types: Типы
+      price_from: Цена от
+      regions: Районы
+      price_to: Цена до
+      roles: Роли
+      password:
+      repeat_password:
+Ads List: АКТУАЛЬНЫЕ ОБЪЕКТЫ
 
 

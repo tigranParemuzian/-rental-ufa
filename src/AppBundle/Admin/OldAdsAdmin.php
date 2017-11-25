@@ -104,12 +104,12 @@ class OldAdsAdmin extends Admin
             ->add('types', null, ['label'=>'admin.ads.types'])
             ->add('notAvalible', null, ['label'=>'admin.ads.notAvalible', 'editable'=>true])
             ->add('notConnected', null, ['label'=>'admin.ads.notConnected', 'editable'=>true])
-            ->add('_action', 'actions',
+            /*->add('_action', 'actions',
                 array('actions' =>
                     array(
                         'delete' => array(), 'edit' => array()
                     )
-                ));
+                ))*/;
 
     }
 
