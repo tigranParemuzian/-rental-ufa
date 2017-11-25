@@ -17,6 +17,25 @@ admin:
       finance: Финансы
       settings: Настройки
       intersts: Интересы
+  ads:
+      firstName: Имя
+      lastName: Фамилия
+      fatherName: Отчество
+      phone: Телефон
+      price: Цена
+      state: Состояние
+      description: Описание
+      region:  Район
+      types:  Тип жилья
+      street:  Улица
+      house:  Дом
+      kb:  Кв
+      sqMeter:  Площадь
+      renovation:  Ремонт
+      furnisher:  Мебель
+      notAvalible:  Недоступен
+      notConnected:  Неотвечает
+      euro: Евро
 
 
 
