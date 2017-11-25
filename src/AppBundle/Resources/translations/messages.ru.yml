@@ -20,7 +20,7 @@ admin:
   ads:
       firstName: Имя
       lastName: Фамилия
-      fatherName: Отчество
+      fatherName: Фамилия
       phone: Телефон
       price: Цена
       email: Эл. адрес
@@ -45,6 +45,7 @@ admin:
       notAvalible:  Недоступен
       notConnected:  Неотвечает
       euro: Евро
+<<<<<<< Updated upstream
       types: Типы
       price_from: Цена от
       regions: Районы
@@ -53,5 +54,15 @@ admin:
       password:
       repeat_password:
 Ads List: АКТУАЛЬНЫЕ ОБЪЕКТЫ
+=======
+  user:
+        admin.user.firstName: Имя
+        admin.user.lastName: Фамилия
+        admin.user.patronymic: Фамилия
+        admin.user.username: Телефон
+        admin.user.paymentDate: Дата платежа
+        admin.user.first_options: Пароль
+        admin.user.second_options: Повториь пароль
+>>>>>>> Stashed changes
 
 
