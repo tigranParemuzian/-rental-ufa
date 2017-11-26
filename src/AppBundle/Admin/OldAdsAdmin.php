@@ -38,8 +38,8 @@ class OldAdsAdmin extends Admin
     public function __construct($code, $class, $baseControllerName)
     {
         parent::__construct($code, $class, $baseControllerName);
-        $this->renovation = ['Евро', 'Косметический', 'Хороший'];
-        $this->state = [Ads::IS_SHOW=>'ПОКАЗ', Ads::IS_ARCHIVE=>'АРХИВ', Ads::IS_DONE=>'СДАН'];
+        $this->renovation = ['admin.ads.euro', 'admin.ads.cosmo', 'admin.ads.good'];
+        $this->state = [Ads::IS_SHOW=>'admin.ads.showcase', Ads::IS_ARCHIVE=>'admin.ads.archive', Ads::IS_DONE=>'admin.ads.passed'];
     }
 
     protected function configureFormFields(FormMapper $formMapper)

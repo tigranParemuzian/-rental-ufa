@@ -10,6 +10,7 @@ namespace AppBundle\Admin;
 
 
 use AppBundle\Entity\Parameter;
+use function PHPSTORM_META\type;
 use Sonata\AdminBundle\Admin\AbstractAdmin as Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -25,10 +26,11 @@ class TypesAdmin extends Admin
             ->with('Main', array(
                 'class' => 'col-sm-12',
                 'box-class' => 'box box-solid box-danger',
-                'description' => 'Parameters main create part'
+                'description' => 'Parameters main create part',
+                'label' => 'admin.types.main'
             ))
-            ->add('name')
-            ->add('isEnabled')
+            ->add('name',null,['label'=>'admin.types.name'])
+            ->add('isEnabled',null,['label'=>'admin.types.isEnabled'])
             ->end()
         ;
 
@@ -40,8 +42,8 @@ class TypesAdmin extends Admin
     protected function configureListFields(ListMapper $list)
     {
         $list
-            ->add('name')
-            ->add('isEnabled', null, ['editable'=>true])
+            ->add('name',null,['label'=>'admin.types.name'])
+            ->add('isEnabled', null,['label'=>'admin.types.isEnabled'], ['editable'=>true])
             ->add('_action', 'actions',
                 array('actions' =>
                     array(
@@ -54,8 +56,8 @@ class TypesAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
-            ->add('isEnabled')
+            ->add('name',null,['label'=>'admin.types.name'])
+            ->add('isEnabled',null,['label'=>'admin.types.isEnabled'])
         ;
     }
 
@@ -65,8 +67,8 @@ class TypesAdmin extends Admin
     protected function configureShowFields(ShowMapper $show)
     {
         $show
-            ->add('name')
-            ->add('isEnabled')
+            ->add('name',null,['label'=>'admin.types.name'])
+            ->add('isEnabled',null,['label'=>'admin.types.isEnabled'])
         ;
     }
 }

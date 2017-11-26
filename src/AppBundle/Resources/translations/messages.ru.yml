@@ -1,6 +1,6 @@
-name: russ
 admin:
   labels:
+      menu: Меню
       ads: АКТУАЛЬНЫЕ ОБЪЕКТЫ
       ads_old: АРХИВНЫЕ ОБЪЕКТЫ
       user: АКТУАЛЬНЫЕ КЛИЕНТЫ
@@ -17,6 +17,7 @@ admin:
       finance: Финансы
       settings: Настройки
       intersts: Интересы
+
   ads:
       firstName: Имя
       lastName: Фамилия
@@ -45,24 +46,49 @@ admin:
       notAvalible:  Недоступен
       notConnected:  Неотвечает
       euro: Евро
-<<<<<<< Updated upstream
+      #<<<<<<< Updated upstream
       types: Типы
       price_from: Цена от
       regions: Районы
       price_to: Цена до
       roles: Роли
-      password:
-      repeat_password:
-Ads List: АКТУАЛЬНЫЕ ОБЪЕКТЫ
-=======
+      cosmo: Косметический
+      good: Хороший
+      showcase: ПОКАЗ
+      archive: АРХИВ
+      passed: СДАН
+
   user:
-        admin.user.firstName: Имя
-        admin.user.lastName: Фамилия
-        admin.user.patronymic: Фамилия
-        admin.user.username: Телефон
-        admin.user.paymentDate: Дата платежа
-        admin.user.first_options: Пароль
-        admin.user.second_options: Повториь пароль
->>>>>>> Stashed changes
+        id: Id
+        firstName: Имя
+        lastName: Фамилия
+        patronymic: Фамилия
+        phone: Телефон
+        email: Эл. адрес
+        contract: Договор
+        contract_cost: Стоимость контракта
+        contract_date: Дата контракта
+        database_permission: Разрешение базы данных           
+        inhabited: Обитаемый
+        sent_password: Отправленный пароль
+        enabled: Включено
+        problematic: Проблематичный
+        types:  Тип жилья
+        price_from: Цена от
+        regions: Районы
+        price_to: Цена до
+        roles: Роли
+        first_options: Пароль
+        second_options: Повторите пароль
+        roles: Роли
+        created: Сделано
+        clients: КЛИЕНТЫ
+        manager: МЕНЕДЖЕР
+        admin: Админ
+  types:
+        main: Главный
+        name: Имя
+        isEnabled: Включен
+        action: Действие
 
 

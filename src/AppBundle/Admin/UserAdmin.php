@@ -42,11 +42,11 @@ class UserAdmin extends Admin
         $securityContext = $this->getConfigurationPool()->getContainer()->get('security.authorization_checker');
 
         if ($securityContext->isGranted('ROLE_MODERATOR') === true){
-            $this->roles =  ['ROLE_CLIENT'=>'КЛИЕНТЫ'];
+            $this->roles =  ['ROLE_CLIENT'=>'admin.user.clients'];
         }elseif ($securityContext->isGranted('ROLE_ADMIN') === true){
-            $this->roles =  ['ROLE_CLIENT'=>'КЛИЕНТЫ', 'ROLE_MODERATOR'=>'МЕНЕДЖЕР'];
+            $this->roles =  ['ROLE_CLIENT'=>'admin.user.clients', 'ROLE_MODERATOR'=>'admin.user.manager'];
         }elseif($securityContext->isGranted('ROLE_SUPER_ADMIN') === true){
-            $this->roles =  ['ROLE_CLIENT'=>'КЛИЕНТЫ', 'ROLE_MODERATOR'=>'МЕНЕДЖЕР', 'ROLE_ADMIN'=>'Admin'];
+            $this->roles =  ['ROLE_CLIENT'=>'admin.user.clients', 'ROLE_MODERATOR'=>'admin.user.manager', 'ROLE_ADMIN'=>'admin.user.admin'];
 
         };
 
@@ -87,17 +87,17 @@ class UserAdmin extends Admin
     {
         $this->getRolesPerms();
         $datagridMapper
-            ->add('id')
-            ->add('email')
-            ->add('username')
-            ->add('lastName')
-            ->add('firstName')
-            ->add('enabled')
-            ->add('phone')
-            ->add('roles', 'doctrine_orm_string', array(), 'choice', array(
+            ->add('id',null,['label'=>'admin.user.id'])
+            ->add('email',null,['label'=>'admin.user.email'])
+            ->add('username', null, ['label'=>'admin.user.phone'])
+            ->add('lastName', null, ['label'=>'admin.user.lastName'])
+            ->add('firstName', null, ['label'=>'admin.user.firstName'])
+            ->add('enabled',null,['label'=>'admin.user.enabled'])
+            ->add('phone',null,['label'=>'admin.user.phone'])
+            ->add('roles', 'doctrine_orm_string', ['label'=>'admin.user.roles'], 'choice', array(
                 'choices'  => array(),
             ))
-            ->add('created', 'doctrine_orm_datetime_range', array(),'sonata_type_datetime_range_picker',
+            ->add('created', 'doctrine_orm_datetime_range',['label'=>'admin.user.created'],'sonata_type_datetime_range_picker',
                 array('field_options_start' => array('format' => 'yyyy-MM-dd HH:mm:ss'),
                     'field_options_end' => array('format' => 'yyyy-MM-dd HH:mm:ss'))
             )
@@ -110,17 +110,17 @@ class UserAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('email', null, ['label'=>'admin.ads.email'])
-            ->add('username', null, ['label'=>'admin.ads.phone'])
-            ->add('lastName', null, ['label'=>'admin.ads.lastName'])
-            ->add('firstName', null, ['label'=>'admin.ads.firstName'])
+            ->addIdentifier('email', null, ['label'=>'admin.user.email'])
+            ->add('username', null, ['label'=>'admin.user.phone'])
+            ->add('lastName', null, ['label'=>'admin.user.lastName'])
+            ->add('firstName', null, ['label'=>'admin.user.firstName'])
 //            ->add('phone')
 //            ->add('roles', 'choice', array(
 //                'choices'  => $this->getRolesPerms(),
 //               /* 'multiple' => true,*/
 //                'template' => 'AppBundle:CRUD:user_roles_list.html.twig')
 //            )
-            ->add('enabled', null, array('editable'=>true, 'label'=>'admin.ads.enabled'))
+            ->add('enabled', null, array('editable'=>true, 'label'=>'admin.user.enabled'))
 //            ->add('created')
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -151,26 +151,26 @@ class UserAdmin extends Admin
                 'box-class' => 'box box-solid box-danger',
                /* 'description'=>'Products main create part'*/
             ))
-            ->add('firstName', 'text', ['label'=>'admin.ads.firstName'])
-            ->add('lastName', 'text', ['label'=>'admin.ads.lastName'])
-            ->add('patronymic', 'text', ['label'=>'Patronymic'])
-            ->add('email', null, ['label'=>'admin.ads.email'])
-            ->add('username', 'text', ['label'=>'admin.ads.phone'])
+            ->add('firstName', 'text', ['label'=>'admin.user.firstName'])
+            ->add('lastName', 'text', ['label'=>'admin.user.lastName'])
+            ->add('patronymic', 'text', ['label'=>'admin.user.patronymic'])
+            ->add('email', null, ['label'=>'admin.user.email'])
+            ->add('username', 'text', ['label'=>'admin.user.username'])
             ->end()
             ->with('admin.witget.finance', array(
                 'class' =>'col-sm-3',
                 'box-class' => 'box box-solid box-danger'/*,
                 'description'=>'Products main create part'*/
             ))
-            ->add('contract', 'text', ['label'=>'admin.ads.contract'])
-            ->add('contractCost', 'text', ['label'=>'admin.ads.contract_cost'])
+            ->add('contract', 'text', ['label'=>'admin.user.contract'])
+            ->add('contractCost', 'text', ['label'=>'admin.user.contract_cost'])
             ->add('paymentDate','sonata_type_date_picker', array(
                 'dp_side_by_side'       => false,
                 'dp_use_current'        => false,
                 'widget' => 'single_text',
                 'format' => 'y-dd-MM',
                 'required' => false,
-                'label'=>'admin.ads.contract_date',
+                'label'=>'admin.user.contract_date',
                 'attr'=>['style' => 'width: 100px !important']
             ))
             ->end()
@@ -179,33 +179,33 @@ class UserAdmin extends Admin
                 'box-class' => 'box box-solid box-danger'/*,
                 'description'=>'Products main create part'*/
             ))
-            ->add('databasePermission', null, ['label'=>'admin.ads.database_permission'])
-            ->add('inhabited', null, ['label'=>'admin.ads.inhabited'])
-            ->add('sentPassword', null, ['label'=>'admin.ads.sent_password'])
-            ->add('enabled', null, ['label'=>'admin.ads.enabled'])
-            ->add('problematic', null, ['label'=>'admin.ads.problematic'])
+            ->add('databasePermission', null, ['label'=>'admin.user.database_permission'])
+            ->add('inhabited', null, ['label'=>'admin.user.inhabited'])
+            ->add('sentPassword', null, ['label'=>'admin.user.sent_password'])
+            ->add('enabled', null, ['label'=>'admin.user.enabled'])
+            ->add('problematic', null, ['label'=>'admin.user.problematic'])
             ->end()
             ->with('admin.witget.intersts', array(
                 'class' =>'col-sm-3',
                 'box-class' => 'box box-solid box-danger'/*,
                 'description'=>'Products main create part'*/
             ))
-            ->add('types', null, ['label'=>'admin.ads.types'])
-            ->add('priceFrom', null, ['label'=>'admin.ads.price_from'])
-            ->add('regions', null, ['label'=>'admin.ads.regions'])
-            ->add('priceTo', null, ['label'=>'admin.ads.price_to'])
+            ->add('types', null, ['label'=>'admin.user.types'])
+            ->add('priceFrom', null, ['label'=>'admin.user.price_from'])
+            ->add('regions', null, ['label'=>'admin.user.regions'])
+            ->add('priceTo', null, ['label'=>'admin.user.price_to'])
             ->add('roles', 'choice', array(
                 'choices'  => $this->getRolesPerms(),
                 'multiple' => true,
-            'label'=>'admin.ads.roles'
+            'label'=>'admin.user.roles'
             ))
             ->add('plainPassword', 'repeated', array('first_name' => 'password',
                 'required' => false,
                 'second_name' => 'confirm',
                 'type' => 'password',
                 'invalid_message' => 'Passwords do not match',
-                'first_options' => array('label' => 'Пароль'),
-                'second_options' => array('label' => 'Повторите пароль')))
+                'first_options' => array('label' => 'admin.user.first_options'),
+                'second_options' => array('label' => 'admin.user.second_options')))
             ->end()
         ;
     }
@@ -220,12 +220,12 @@ class UserAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('id')
-            ->add('email')
-            ->add('phone')
-            ->add('username')
-            ->add('lastName')
-            ->add('firstName')
+            ->add('id',null,['label'=>'admin.user.id'])
+            ->add('email',null,['label'=>'admin.user.email'])
+            ->add('username', null, ['label'=>'admin.user.phone'])
+            ->add('lastName', null, ['label'=>'admin.user.lastName'])
+            ->add('firstName', null, ['label'=>'admin.user.firstName'])
+            ->add('phone',null,['label'=>'admin.user.phone'])
         ;
     }
 

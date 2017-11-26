@@ -1,5 +1,7 @@
+Menu: menu
 admin:
   labels:
+      menu: Menu
       ads: ACTUAL OBJECTS
       ads_old: ARCHIVING OBJECTS
       user: ACTUAL CLIENTS
@@ -18,7 +20,7 @@ admin:
       intersts: Interests
 
   ads:
-<<<<<<< Updated upstream
+#<<<<<<< Updated upstream
       firstName: First Name
       lastName: Last Name
       fatherName: Father Name
@@ -38,39 +40,4 @@ admin:
       notConnected:  Not Connected
       euro: Euro
   user:
-
-Ads List: Ads List
-Name: Yuuuhu
-=======
-    firstName: Firstname
-    lastName: Lastname
-    fatherName: Fathername
-    phone: Phone
-    price: Price
-    state: State
-    description: Description
-    region: Region
-    types: Types
-    street: Street
-    house: House
-    kb: Kb
-    sqMeter: Sqmeter
-    renovation: Renovation
-    furnisher: Furnisher
-    notAvalible: Not Available
-    notConnected: Not Connected
-    euro: Euro
-  user:
-        admin.user.firstName: Firstname
-        admin.user.lastName: Lastname
-        admin.user.patronymic: Fathername
-        admin.user.username: Phone
-        admin.user.plainPassword: Password
-        admin.user.first_options: Password
-        admin.user.second_options: Repeat password    
-
-
->>>>>>> Stashed changes
-
-
 

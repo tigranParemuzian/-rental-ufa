@@ -22,13 +22,13 @@ class RegionsAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('Main', array(
+            ->with('admin.labels.main', array(
                 'class' => 'col-sm-12',
                 'box-class' => 'box box-solid box-danger',
-                'description' => 'Parameters main create part'
+                'description' => 'Parameters main create part',
             ))
-            ->add('name')
-            ->add('isEnabled')
+            ->add('name',null,['label'=>'admin.types.name'])
+            ->add('isEnabled',null,['label'=>'admin.types.isEnabled'])
             ->end()
         ;
 
@@ -40,9 +40,9 @@ class RegionsAdmin extends Admin
     protected function configureListFields(ListMapper $list)
     {
         $list
-            ->add('name', 'text', ['editable'=>true])
-            ->add('isEnabled', null, ['editable'=>true])
-            ->add('_action', 'actions',
+            ->add('name',null,['label'=>'admin.types.name'])
+            ->add('isEnabled', null,['label'=>'admin.types.isEnabled'], ['editable'=>true])
+            ->add('_action', 'actions',['label'=>'admin.types.action'],
                 array('actions' =>
                     array(
                         'delete' => array(), 'edit' => array()
@@ -54,8 +54,8 @@ class RegionsAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
-            ->add('isEnabled')
+            ->add('name',null,['label'=>'admin.types.name'])
+            ->add('isEnabled',null,['label'=>'admin.types.isEnabled'])
         ;
     }
 
@@ -65,8 +65,8 @@ class RegionsAdmin extends Admin
     protected function configureShowFields(ShowMapper $show)
     {
         $show
-            ->add('name')
-            ->add('isEnabled')
+            ->add('name',null,['label'=>'admin.types.name'])
+            ->add('isEnabled',null,['label'=>'admin.types.isEnabled'])
         ;
     }
 }

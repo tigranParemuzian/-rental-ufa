@@ -165,7 +165,8 @@ sonata_admin:
                   groups: [Menu]
         groups:
             Menu:
-                label: ~
+                label: Menu
+                #label: admin.labels.menu
                 label_catalogue: ~
                 icon: '<i class="fa fa-list-alt"></i>'
                 items:
