@@ -10,7 +10,6 @@ namespace AppBundle\Admin;
 
 
 use AppBundle\Entity\Ads;
-use AppBundle\Entity\Parameter;
 use Sonata\AdminBundle\Admin\AbstractAdmin as Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -23,12 +22,19 @@ class AdsAdmin extends Admin
 //    protected $translationDomain ='ads';
     protected $renovation;
     protected $state;
+    protected $container;
 
-    public function __construct($code, $class, $baseControllerName)
+    public function __construct($code, $class, $baseControllerName, $container = null)
     {
         parent::__construct($code, $class, $baseControllerName);
-        $this->renovation = ['admin.ads.euro', 'admin.ads.cosmo', 'admin.ads.good'];
-        $this->state = ['admin.ads.showcase', 'admin.ads.archive', 'admin.ads.passed'];
+
+
+        $this->container = $container;
+        $translator = $this->container->get('translator');
+
+        $this->renovation = [$translator->trans('admin.ads.euro'), $translator->trans('admin.ads.cosmo'), $translator->trans('admin.ads.good')];
+        $this->state = [Ads::IS_SHOW=>$translator->trans('admin.ads.showcase'),
+            Ads::IS_ARCHIVE=>$translator->trans('admin.ads.archive'), Ads::IS_DONE=>$translator->trans('admin.ads.passed')];
     }
 
     protected function configureFormFields(FormMapper $formMapper)
@@ -76,7 +82,8 @@ class AdsAdmin extends Admin
         $list
             ->add('id', null, ['label'=>'admin.ads.id'])
             ->add('price', null, ['label'=>'admin.ads.price', 'editable'=>true])
-            ->add('state', 'choice', ['choices'=>$this->state, 'label'=>'admin.ads.state', 'editable'=>true])
+            ->add('state', 'choice', ['choices'=>$this->state,
+                'label'=>'admin.ads.state', 'editable'=>true])
             ->add('firstName', null, ['label'=>'admin.ads.firstName', 'editable'=>true])
             ->add('lastName', null, ['label'=>'admin.ads.lastName', 'editable'=>true])
             ->add('fatherName',null, ['label'=>'admin.ads.fatherName', 'editable'=>true])
@@ -96,8 +103,8 @@ class AdsAdmin extends Admin
                 array('actions' =>
                     array(
                         'delete' => array(), 'edit' => array(),
-                        'label'=>'admin.types.action'
-                    )
+                    ),
+                    'label'=>'admin.types.action'
                 ));
 
     }

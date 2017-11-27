@@ -17,13 +17,13 @@ services:
 
     app.admin.ads:
         class: AppBundle\Admin\AdsAdmin
-        arguments: [~, AppBundle\Entity\Ads,  SonataAdminBundle:CRUD]
+        arguments: [~, AppBundle\Entity\Ads,  SonataAdminBundle:CRUD, '@service_container']
         tags:
             - {name: sonata.admin, manager_type: orm, group: admin.groups.ads , label: admin.labels.ads }
 
     app.admin.disables:
         class: AppBundle\Admin\OldAdsAdmin
-        arguments: [~,  AppBundle\Entity\Ads, SonataAdminBundle:CRUD]
+        arguments: [~,  AppBundle\Entity\Ads, SonataAdminBundle:CRUD, '@service_container']
         tags:
             - {name: sonata.admin, manager_type: orm, group: admin.groups.ads , label: admin.labels.ads_old }
 

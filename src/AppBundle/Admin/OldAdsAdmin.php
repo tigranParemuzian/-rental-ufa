@@ -34,12 +34,16 @@ class OldAdsAdmin extends Admin
 
     protected $renovation;
     protected $state;
+    protected $container;
 
-    public function __construct($code, $class, $baseControllerName)
+    public function __construct($code, $class, $baseControllerName, $container)
     {
         parent::__construct($code, $class, $baseControllerName);
-        $this->renovation = ['admin.ads.euro', 'admin.ads.cosmo', 'admin.ads.good'];
-        $this->state = [Ads::IS_SHOW=>'admin.ads.showcase', Ads::IS_ARCHIVE=>'admin.ads.archive', Ads::IS_DONE=>'admin.ads.passed'];
+        $this->container = $container;
+        $translator = $this->container->get('translator');
+        $this->renovation = [$translator->trans('admin.ads.euro'), $translator->trans('admin.ads.cosmo'), $translator->trans('admin.ads.good')];
+        $this->state = [Ads::IS_SHOW=>$translator->trans('admin.ads.showcase'),
+            Ads::IS_ARCHIVE=>$translator->trans('admin.ads.archive'), Ads::IS_DONE=>$translator->trans('admin.ads.passed')];
     }
 
     protected function configureFormFields(FormMapper $formMapper)
@@ -104,12 +108,7 @@ class OldAdsAdmin extends Admin
             ->add('types', null, ['label'=>'admin.ads.types'])
             ->add('notAvalible', null, ['label'=>'admin.ads.notAvalible', 'editable'=>true])
             ->add('notConnected', null, ['label'=>'admin.ads.notConnected', 'editable'=>true])
-            /*->add('_action', 'actions',
-                array('actions' =>
-                    array(
-                        'delete' => array(), 'edit' => array()
-                    )
-                ))*/;
+          ;
 
     }
 
