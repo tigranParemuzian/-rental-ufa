@@ -74,7 +74,7 @@ class AdsAdmin extends Admin
     protected function configureListFields(ListMapper $list)
     {
         $list
-            ->add('id')
+            ->add('id', null, ['label'=>'admin.ads.id'])
             ->add('price', null, ['label'=>'admin.ads.price', 'editable'=>true])
             ->add('state', 'choice', ['choices'=>$this->state, 'label'=>'admin.ads.state', 'editable'=>true])
             ->add('firstName', null, ['label'=>'admin.ads.firstName', 'editable'=>true])
@@ -95,7 +95,8 @@ class AdsAdmin extends Admin
             ->add('_action', 'actions',
                 array('actions' =>
                     array(
-                        'delete' => array(), 'edit' => array()
+                        'delete' => array(), 'edit' => array(),
+                        'label'=>'admin.types.action'
                     )
                 ));
 

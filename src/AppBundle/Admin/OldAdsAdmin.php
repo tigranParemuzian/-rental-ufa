@@ -86,7 +86,7 @@ class OldAdsAdmin extends Admin
     {
 
         $list
-            ->add('id')
+            ->add('id', null, ['label'=>'admin.ads.id'])
             ->add('price', null, ['label'=>'admin.ads.price', 'editable'=>true])
             ->add('state', 'choice', ['choices'=>$this->state, 'label'=>'admin.ads.state', 'editable'=>true])
             ->add('firstName', null, ['label'=>'admin.ads.firstName', 'editable'=>true])
@@ -116,7 +116,7 @@ class OldAdsAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('id')
+            ->add('id', null, ['label'=>'admin.ads.id'])
             ->add('price', null, ['label'=>'admin.ads.price', 'editable'=>true])
             ->add('state', 'doctrine_orm_choice', ['label' => 'admin.ads.state'], 'choice', ['choices'=>$this->state, 'expanded' => true,
                 'multiple' => true])
@@ -144,7 +144,7 @@ class OldAdsAdmin extends Admin
     protected function configureShowFields(ShowMapper $show)
     {
         $show
-            ->add('id')
+            ->add('id', null, ['label'=>'admin.ads.id'])
             ->add('price', null, ['label'=>'admin.ads.price'])
 //            ->add('state', 'choice', ['choices'=>$this->state, 'label'=>'Состояние'])
             ->add('firstName', null, ['label'=>'admin.ads.firstName'])

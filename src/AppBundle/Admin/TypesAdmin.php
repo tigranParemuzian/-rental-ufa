@@ -48,7 +48,8 @@ class TypesAdmin extends Admin
                 array('actions' =>
                     array(
                         'delete' => array(), 'edit' => array()
-                    )
+                    ),
+                    'label'=>'admin.types.action'
                 ));
 
     }

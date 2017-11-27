@@ -22,7 +22,7 @@ class RegionsAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('admin.labels.main', array(
+            ->with('admin.witget.main', array(
                 'class' => 'col-sm-12',
                 'box-class' => 'box box-solid box-danger',
                 'description' => 'Parameters main create part',
@@ -42,11 +42,13 @@ class RegionsAdmin extends Admin
         $list
             ->add('name',null,['label'=>'admin.types.name'])
             ->add('isEnabled', null,['label'=>'admin.types.isEnabled'], ['editable'=>true])
-            ->add('_action', 'actions',['label'=>'admin.types.action'],
+            ->add('_action', 'actions',
                 array('actions' =>
                     array(
                         'delete' => array(), 'edit' => array()
-                    )
+
+                    ),
+                    'label'=>'admin.types.action'
                 ));
 
     }

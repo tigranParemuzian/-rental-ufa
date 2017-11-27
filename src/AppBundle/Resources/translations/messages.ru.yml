@@ -1,3 +1,13 @@
+Menu: Меню
+Regions List: Список регионов
+Regions Create: Создать регионов
+Types List: Список типов
+Types Create: Создать типы
+Ads List: Список архивных клиентов
+Ads Create: Создать акту  альных клиентов
+User List: Список реальных клиентов
+User Create: Создать реальных клиентов
+
 admin:
   labels:
       menu: Меню
@@ -19,6 +29,7 @@ admin:
       intersts: Интересы
 
   ads:
+      id: Id
       firstName: Имя
       lastName: Фамилия
       fatherName: Фамилия
@@ -65,6 +76,7 @@ admin:
         patronymic: Фамилия
         phone: Телефон
         email: Эл. адрес
+        username: имя пользователя
         contract: Договор
         contract_cost: Стоимость контракта
         contract_date: Дата контракта
