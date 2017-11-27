@@ -10,7 +10,6 @@ namespace AppBundle\Admin;
 
 
 use AppBundle\Entity\Ads;
-use AppBundle\Entity\Parameter;
 use Sonata\AdminBundle\Admin\AbstractAdmin as Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -54,12 +53,14 @@ class OldAdsAdmin extends Admin
                 'box-class' => 'box box-solid box-danger'
                 /*'description' => 'admin.witget.main_descr'*/
             ))
-            ->add('firstName', 'text', ['label'=>'admin.ads.firstName'])
-            ->add('lastName', 'text', ['label'=>'admin.ads.lastName'])
-            ->add('fatherName','text', ['label'=>'admin.ads.fatherName'])
+            ->add('firstName', 'text', ['label'=>'admin.ads.fio'])
+//            ->add('lastName', 'text', ['label'=>'admin.ads.lastName'])
+//            ->add('fatherName','text', ['label'=>'admin.ads.fatherName'])
             ->add('phone', 'text', ['label'=>'admin.ads.phone'])
             ->add('price', 'text', ['label'=>'admin.ads.price'])
             ->add('state', 'choice', ['choices'=>$this->state, 'label'=>'admin.ads.state'])
+            ->add('region', null, ['label'=>'admin.ads.region'])
+            ->add('types', null, ['label'=>'admin.ads.types'])
             ->add('description','textarea', ['label'=>'admin.ads.description'])
             ->end()
             ->with('admin.witget.parent', array(
@@ -67,12 +68,9 @@ class OldAdsAdmin extends Admin
                 'box-class' => 'box box-solid box-danger'
                 /*'description' => 'admin.witget.main_descr'*/
             ))
-
-            ->add('region', null, ['label'=>'admin.ads.region'])
-            ->add('types', null, ['label'=>'admin.ads.types'])
             ->add('street', 'text', ['label'=>'admin.ads.street'])
             ->add('house', 'text', ['label'=>'admin.ads.house'])
-            ->add('kb', 'text', ['label'=>'admin.ads.kb'])
+            ->add('kb', 'text', ['label'=>'admin.ads.kb', 'requred'=>false])
             ->add('sqMeter', 'text', ['label'=>'admin.ads.sqMeter'])
             ->add('renovation', 'choice', ['choices'=>$this->renovation, 'label'=>'admin.ads.renovation'])
             ->add('furnisher', null, ['label'=>'admin.ads.furnisher'])
@@ -93,9 +91,9 @@ class OldAdsAdmin extends Admin
             ->add('id', null, ['label'=>'admin.ads.id'])
             ->add('price', null, ['label'=>'admin.ads.price', 'editable'=>true])
             ->add('state', 'choice', ['choices'=>$this->state, 'label'=>'admin.ads.state', 'editable'=>true])
-            ->add('firstName', null, ['label'=>'admin.ads.firstName', 'editable'=>true])
-            ->add('lastName', null, ['label'=>'admin.ads.lastName', 'editable'=>true])
-            ->add('fatherName',null, ['label'=>'admin.ads.fatherName', 'editable'=>true])
+            ->add('firstName', null, ['label'=>'admin.ads.fio', 'editable'=>true])
+//            ->add('lastName', null, ['label'=>'admin.ads.lastName', 'editable'=>true])
+//            ->add('fatherName',null, ['label'=>'admin.ads.fatherName', 'editable'=>true])
             ->add('phone', null, ['label'=>'admin.ads.phone', 'editable'=>true])
             ->add('description','textarea', ['label'=>'admin.ads.description', 'editable'=>true])
             ->add('street', 'text', ['label'=>'admin.ads.street', 'editable'=>true])
@@ -119,9 +117,9 @@ class OldAdsAdmin extends Admin
             ->add('price', null, ['label'=>'admin.ads.price', 'editable'=>true])
             ->add('state', 'doctrine_orm_choice', ['label' => 'admin.ads.state'], 'choice', ['choices'=>$this->state, 'expanded' => true,
                 'multiple' => true])
-            ->add('firstName', null, ['label'=>'admin.ads.firstName', 'editable'=>true])
-            ->add('lastName', null, ['label'=>'admin.ads.lastName', 'editable'=>true])
-            ->add('fatherName',null, ['label'=>'admin.ads.fatherName', 'editable'=>true])
+            ->add('firstName', null, ['label'=>'admin.ads.fio', 'editable'=>true])
+//            ->add('lastName', null, ['label'=>'admin.ads.lastName', 'editable'=>true])
+//            ->add('fatherName',null, ['label'=>'admin.ads.fatherName', 'editable'=>true])
             ->add('phone', null, ['label'=>'admin.ads.phone', 'editable'=>true])
             ->add('street', null, ['label'=>'admin.ads.street', 'editable'=>true])
             ->add('house', null, ['label'=>'admin.ads.house', 'editable'=>true])
@@ -146,9 +144,9 @@ class OldAdsAdmin extends Admin
             ->add('id', null, ['label'=>'admin.ads.id'])
             ->add('price', null, ['label'=>'admin.ads.price'])
 //            ->add('state', 'choice', ['choices'=>$this->state, 'label'=>'Состояние'])
-            ->add('firstName', null, ['label'=>'admin.ads.firstName'])
-            ->add('lastName', null, ['label'=>'admin.ads.lastName'])
-            ->add('fatherName',null, ['label'=>'admin.ads.fatherName'])
+            ->add('firstName', null, ['label'=>'admin.ads.fio'])
+//            ->add('lastName', null, ['label'=>'admin.ads.lastName'])
+//            ->add('fatherName',null, ['label'=>'admin.ads.fatherName'])
             ->add('phone', null, ['label'=>'admin.ads.phone'])
             ->add('description','textarea', ['label'=>'admin.ads.description'])
             ->add('street', null, ['label'=>'admin.ads.street'])

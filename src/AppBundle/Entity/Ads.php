@@ -49,20 +49,6 @@ class Ads
     /**
      * @var string
      *
-     * @ORM\Column(name="last_name", type="string", length=255)
-     */
-    private $lastName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="father_name", type="string", length=255)
-     */
-    private $fatherName;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="phone", type="string", length=255)
      */
     private $phone;
@@ -91,14 +77,14 @@ class Ads
     /**
      * @var string
      *
-     * @ORM\Column(name="kb", type="string", length=50)
+     * @ORM\Column(name="kb", type="string", length=50, nullable=true)
      */
     private $kb;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="sq_meter", type="string", length=255)
+     * @ORM\Column(name="sq_meter", type="string", length=255, nullable=true)
      */
     private $sqMeter;
 
@@ -230,54 +216,6 @@ class Ads
     public function getFirstName()
     {
         return $this->firstName;
-    }
-
-    /**
-     * Set lastName
-     *
-     * @param string $lastName
-     *
-     * @return Ads
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * Get lastName
-     *
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * Set fatherName
-     *
-     * @param string $fatherName
-     *
-     * @return Ads
-     */
-    public function setFatherName($fatherName)
-    {
-        $this->fatherName = $fatherName;
-
-        return $this;
-    }
-
-    /**
-     * Get fatherName
-     *
-     * @return string
-     */
-    public function getFatherName()
-    {
-        return $this->fatherName;
     }
 
     /**

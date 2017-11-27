@@ -88,7 +88,7 @@ class UserAdmin extends Admin
         $this->getRolesPerms();
         $datagridMapper
             ->add('id',null,['label'=>'admin.user.id'])
-            ->add('email',null,['label'=>'admin.user.email'])
+//            ->add('email',null,['label'=>'admin.user.email'])
             ->add('username', null, ['label'=>'admin.user.phone'])
             ->add('lastName', null, ['label'=>'admin.user.lastName'])
             ->add('firstName', null, ['label'=>'admin.user.firstName'])
@@ -110,7 +110,7 @@ class UserAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('email', null, ['label'=>'admin.user.email'])
+//            ->addIdentifier('phone', null, ['label'=>'admin.user.email'])
             ->add('username', null, ['label'=>'admin.user.phone'])
             ->add('lastName', null, ['label'=>'admin.user.lastName'])
             ->add('firstName', null, ['label'=>'admin.user.firstName'])
@@ -147,21 +147,15 @@ class UserAdmin extends Admin
 
         $formMapper
             ->with('admin.witget.main', array(
-                'class' =>'col-sm-3',
+                'class' =>'col-sm-4',
                 'box-class' => 'box box-solid box-danger',
                /* 'description'=>'Products main create part'*/
             ))
             ->add('firstName', 'text', ['label'=>'admin.user.firstName'])
             ->add('lastName', 'text', ['label'=>'admin.user.lastName'])
             ->add('patronymic', 'text', ['label'=>'admin.user.patronymic'])
-            ->add('email', null, ['label'=>'admin.user.email'])
-            ->add('username', 'text', ['label'=>'admin.user.username'])
-            ->end()
-            ->with('admin.witget.finance', array(
-                'class' =>'col-sm-3',
-                'box-class' => 'box box-solid box-danger'/*,
-                'description'=>'Products main create part'*/
-            ))
+//            ->add('email', null, ['label'=>'admin.user.email'])
+            ->add('username', 'text', ['label'=>'admin.user.phone'])
             ->add('contract', 'text', ['label'=>'admin.user.contract'])
             ->add('contractCost', 'text', ['label'=>'admin.user.contract_cost'])
             ->add('paymentDate','sonata_type_date_picker', array(
@@ -174,26 +168,15 @@ class UserAdmin extends Admin
                 'attr'=>['style' => 'width: 100px !important']
             ))
             ->end()
-            ->with('admin.witget.settings', array(
-                'class' =>'col-sm-3',
-                'box-class' => 'box box-solid box-danger'/*,
-                'description'=>'Products main create part'*/
-            ))
-            ->add('databasePermission', null, ['label'=>'admin.user.database_permission'])
-            ->add('inhabited', null, ['label'=>'admin.user.inhabited'])
-            ->add('sentPassword', null, ['label'=>'admin.user.sent_password'])
-            ->add('enabled', null, ['label'=>'admin.user.enabled'])
-            ->add('problematic', null, ['label'=>'admin.user.problematic'])
-            ->end()
             ->with('admin.witget.intersts', array(
-                'class' =>'col-sm-3',
+                'class' =>'col-sm-4',
                 'box-class' => 'box box-solid box-danger'/*,
                 'description'=>'Products main create part'*/
             ))
             ->add('types', null, ['label'=>'admin.user.types'])
             ->add('priceFrom', null, ['label'=>'admin.user.price_from'])
-            ->add('regions', null, ['label'=>'admin.user.regions'])
             ->add('priceTo', null, ['label'=>'admin.user.price_to'])
+            ->add('regions', null, ['label'=>'admin.user.regions'])
             ->add('roles', 'choice', array(
                 'choices'  => $this->getRolesPerms(),
                 'multiple' => true,
@@ -206,6 +189,17 @@ class UserAdmin extends Admin
                 'invalid_message' => 'Passwords do not match',
                 'first_options' => array('label' => 'admin.user.first_options'),
                 'second_options' => array('label' => 'admin.user.second_options')))
+            ->end()
+            ->with('admin.witget.settings', array(
+                'class' =>'col-sm-4',
+                'box-class' => 'box box-solid box-danger'/*,
+                'description'=>'Products main create part'*/
+            ))
+            ->add('databasePermission', null, ['label'=>'admin.user.database_permission'])
+//            ->add('inhabited', null, ['label'=>'admin.user.inhabited'])
+            ->add('sentPassword', null, ['label'=>'admin.user.sent_password'])
+            ->add('enabled', null, ['label'=>'admin.user.enabled'])
+            ->add('problematic', null, ['label'=>'admin.user.problematic'])
             ->end()
         ;
     }
@@ -221,7 +215,7 @@ class UserAdmin extends Admin
     {
         $showMapper
             ->add('id',null,['label'=>'admin.user.id'])
-            ->add('email',null,['label'=>'admin.user.email'])
+//            ->add('email',null,['label'=>'admin.user.email'])
             ->add('username', null, ['label'=>'admin.user.phone'])
             ->add('lastName', null, ['label'=>'admin.user.lastName'])
             ->add('firstName', null, ['label'=>'admin.user.firstName'])
@@ -233,8 +227,30 @@ class UserAdmin extends Admin
     {
         parent::preUpdate($object);
 
+        $now = new \DateTime('now');
+
+        if($object->getSentPassword() == true){
+
+            $object->setPlainPassword( substr(md5($now->getTimestamp()), -6, 6));
+
+            $this->pass = $object->getPlainPassword();
+
+            $object->setEmail($object->getUsername() . '@rental-ufa.ru');
+
+            $message = "http://rental-ufa.Ru %0A Login: {$object->getUsername()} %0A Password: ".$this->pass ;
+            $url = "http://smsc.ru/sys/send.php?login=tigran2006&psw=aa2009aa&phones={$object->getUsername()}&mes={$message}";
+            $t = file_get_contents($url);
+
+            $log = $this->getConfigurationPool()->getContainer()->get('monolog.logger.command_create');
+
+            $log->info($t);
+
+            $object->setSentPassword(false);
+        }
+
         $this->updatePassword($object);
         $object->setPhone($object->getUsername());
+
 
 
         if($object->getRegions()){
@@ -257,6 +273,8 @@ class UserAdmin extends Admin
         parent::prePersist($object);
 
         $this->pass = $object->getPlainPassword();
+
+        $object->setEmail($object->getUsername() . '@rental-ufa.ru');
 
         $this->updatePassword($object);
         $object->setPhone($object->getUsername());

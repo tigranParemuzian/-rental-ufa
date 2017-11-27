@@ -30,6 +30,7 @@ admin:
 
   ads:
       id: Id
+      fio: ФИО
       firstName: Имя
       lastName: Фамилия
       fatherName: Фамилия
@@ -53,6 +54,7 @@ admin:
       kb:  Кв
       sqMeter:  Площадь
       renovation:  Ремонт
+      regular: Обычный
       furnisher:  Мебель
       notAvalible:  Недоступен
       notConnected:  Неотвечает
@@ -70,33 +72,33 @@ admin:
       passed: СДАН
 
   user:
-        id: Id
-        firstName: Имя
-        lastName: Фамилия
-        patronymic: Фамилия
-        phone: Телефон
-        email: Эл. адрес
-        username: имя пользователя
-        contract: Договор
-        contract_cost: Стоимость контракта
-        contract_date: Дата контракта
-        database_permission: Разрешение базы данных           
-        inhabited: Обитаемый
-        sent_password: Отправленный пароль
-        enabled: Включено
-        problematic: Проблематичный
-        types:  Тип жилья
-        price_from: Цена от
-        regions: Районы
-        price_to: Цена до
-        roles: Роли
-        first_options: Пароль
-        second_options: Повторите пароль
-        roles: Роли
-        created: Сделано
-        clients: КЛИЕНТЫ
-        manager: МЕНЕДЖЕР
-        admin: Админ
+      id: Id
+      firstName: Имя
+      lastName: Фамилия
+      patronymic: Отчество
+      phone: Телефон
+      email: Эл. адрес
+      username: имя пользователя
+      contract: Договор
+      contract_cost: Стоимость контракта
+      contract_date: Дата контракта
+      database_permission: Разрешение базы данных           
+      inhabited: Обитаемый
+      sent_password: Отправленный пароль
+      enabled: Включено
+      problematic: Проблематичный
+      types:  Тип жилья
+      price_from: Цена от
+      regions: Районы
+      price_to: Цена до
+      roles: Роли
+      first_options: Пароль
+      second_options: Повторите пароль
+      roles: Роли
+      created: Сделано
+      clients: КЛИЕНТЫ
+      manager: МЕНЕДЖЕР
+      admin: Админ
   types:
         main: Главный
         name: Имя
