@@ -173,11 +173,20 @@ class UserAdmin extends Admin
             ->add('lastName', 'text', ['label'=>'admin.user.lastName'])
             ->add('patronymic', 'text', ['label'=>'admin.user.patronymic'])
 //            ->add('email', null, ['label'=>'admin.user.email'])
-            ->add('username', 'text', ['label'=>'admin.user.phone']);
+            ->add('username', 'text', ['label'=>'admin.user.phone'])
+            ->add('contract', 'text', ['label'=>'admin.user.contract'])
+
+        ;
 
 
             $formMapper
-                ->add('contract', 'text', ['label'=>'admin.user.contract'])
+
+                ->end()
+                ->with('admin.witget.intersts', array(
+                    'class' =>'col-sm-4',
+                    'box-class' => 'box box-solid box-danger'/*,
+                'description'=>'Products main create part'*/
+                ))
                 ->add('contractCost', 'text', ['label'=>'admin.user.contract_cost'])
                 ->add('paymentDate','sonata_type_date_picker', array(
                     'dp_side_by_side'       => false,
@@ -186,17 +195,11 @@ class UserAdmin extends Admin
                     'format' => 'y-dd-MM',
                     'required' => false,
                     'label'=>'admin.user.contract_date',
-                    'attr'=>['style' => 'width: 100px !important']
+//                    'attr'=>['style' => 'width: 100px !important']
                 ))
-                ->end()
-                ->with('admin.witget.intersts', array(
-                    'class' =>'col-sm-4',
-                    'box-class' => 'box box-solid box-danger'/*,
-                'description'=>'Products main create part'*/
-                ))
-                ->add('types', null, ['label'=>'admin.user.types'])
                 ->add('priceFrom', null, ['label'=>'admin.user.price_from'])
                 ->add('priceTo', null, ['label'=>'admin.user.price_to'])
+                ->add('types', null, ['label'=>'admin.user.types'])
                 ->add('regions', null, ['label'=>'admin.user.regions']);
 
 //        if ($securityContext->isGranted('ROLE_ADMIN') === true) {
@@ -211,6 +214,13 @@ class UserAdmin extends Admin
 
 
         $formMapper
+
+            ->end()
+            ->with('admin.witget.settings', array(
+                'class' =>'col-sm-4',
+                'box-class' => 'box box-solid box-danger'/*,
+                'description'=>'Products main create part'*/
+            ))
             ->add('plainPassword', 'repeated', array('first_name' => 'password',
                 'required' => false,
                 'second_name' => 'confirm',
@@ -218,16 +228,10 @@ class UserAdmin extends Admin
                 'invalid_message' => 'Passwords do not match',
                 'first_options' => array('label' => 'admin.user.first_options'),
                 'second_options' => array('label' => 'admin.user.second_options')))
-            ->end()
-            ->with('admin.witget.settings', array(
-                'class' =>'col-sm-4',
-                'box-class' => 'box box-solid box-danger'/*,
-                'description'=>'Products main create part'*/
-            ))
-            ->add('databasePermission', null, ['label'=>'admin.user.database_permission'])
+//            ->add('databasePermission', null, ['label'=>'admin.user.database_permission'])
 //            ->add('inhabited', null, ['label'=>'admin.user.inhabited'])
             ->add('sentPassword', null, ['label'=>'admin.user.sent_password'])
-            ->add('enabled', null, ['label'=>'admin.user.enabled'])
+            ->add('enabled', null, ['label'=>'admin.user.enabled', 'data'=>true])
             ->add('problematic', null, ['label'=>'admin.user.problematic'])
             ->end()
         ;

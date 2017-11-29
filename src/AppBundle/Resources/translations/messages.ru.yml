@@ -87,7 +87,7 @@ admin:
       contract_date: Дата контракта
       database_permission: Разрешение базы данных           
       inhabited: Обитаемый
-      sent_password: Отправленный пароль
+      sent_password: Отправить пароль
       enabled: Включено
       problematic: Проблематичный
       types:  Тип жилья
