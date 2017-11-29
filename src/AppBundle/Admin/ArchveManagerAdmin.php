@@ -120,7 +120,7 @@ class ArchveManagerAdmin extends Admin
      */
     protected function configureListFields(ListMapper $listMapper)
     {
-        $securityContext = $this->container->get('security.authorization_checker');
+        $securityContext = $this->getConfigurationPool()->getContainer()->get('security.authorization_checker');
 
         $listMapper
             ->addIdentifier('id', null, ['label'=>'admin.user.id'])
