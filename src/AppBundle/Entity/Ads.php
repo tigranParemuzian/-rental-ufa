@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Traits\GedmoInfos;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -15,6 +16,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Ads
 {
     const IS_SHOW = 0, IS_ARCHIVE = 1, IS_DONE = 2;
+
+    use GedmoInfos;
 
     /**
      * @var int
@@ -130,6 +133,16 @@ class Ads
      */
     private $types;
 
+    /**
+     * @var
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="ads")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $author;
+
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->id ? $this->price . ' р.'.$this->region : 'New Ads';
@@ -488,5 +501,29 @@ class Ads
     public function setNotConnected($notConnected)
     {
         $this->notConnected = $notConnected;
+    }
+
+    /**
+     * Set author
+     *
+     * @param \AppBundle\Entity\User $author
+     *
+     * @return Ads
+     */
+    public function setAuthor(\AppBundle\Entity\User $author = null)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
     }
 }

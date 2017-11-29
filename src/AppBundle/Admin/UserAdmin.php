@@ -30,23 +30,32 @@ class UserAdmin extends Admin
 
     private $roles;
     private $pass;
+    private $container;
 
-    public function __construct($code, $class, $baseControllerName)
+    public function __construct($code, $class, $baseControllerName, $container = null)
     {
         parent::__construct($code, $class, $baseControllerName);
 
+        $this->container  =$container;
 
     }
 
     public function getRolesPerms(){
-        $securityContext = $this->getConfigurationPool()->getContainer()->get('security.authorization_checker');
+        $securityContext = $this->container->get('security.authorization_checker');
+
+        $translator = $this->container->get('translator');
+
 
         if ($securityContext->isGranted('ROLE_MODERATOR') === true){
-            $this->roles =  ['ROLE_CLIENT'=>'admin.user.clients'];
-        }elseif ($securityContext->isGranted('ROLE_ADMIN') === true){
-            $this->roles =  ['ROLE_CLIENT'=>'admin.user.clients', 'ROLE_MODERATOR'=>'admin.user.manager'];
-        }elseif($securityContext->isGranted('ROLE_SUPER_ADMIN') === true){
-            $this->roles =  ['ROLE_CLIENT'=>'admin.user.clients', 'ROLE_MODERATOR'=>'admin.user.manager', 'ROLE_ADMIN'=>'admin.user.admin'];
+            $this->roles =  ['ROLE_CLIENT'=>$translator->trans('admin.user.clients')];
+        }
+
+        if ($securityContext->isGranted('ROLE_ADMIN') === true){
+            $this->roles =  ['ROLE_CLIENT'=>$translator->trans('admin.user.clients'), 'ROLE_MODERATOR'=>$translator->trans('admin.user.manager')];
+        }
+
+        if($securityContext->isGranted('ROLE_SUPER_ADMIN') === true){
+            $this->roles =  ['ROLE_CLIENT'=>$translator->trans('admin.user.clients'), 'ROLE_MODERATOR'=>$translator->trans('admin.user.manager'), 'ROLE_ADMIN'=>$translator->trans('admin.user.admin')];
 
         };
 
@@ -115,11 +124,19 @@ class UserAdmin extends Admin
             ->add('lastName', null, ['label'=>'admin.user.lastName'])
             ->add('firstName', null, ['label'=>'admin.user.firstName'])
 //            ->add('phone')
-//            ->add('roles', 'choice', array(
-//                'choices'  => $this->getRolesPerms(),
-//               /* 'multiple' => true,*/
-//                'template' => 'AppBundle:CRUD:user_roles_list.html.twig')
-//            )
+            // Output for value `http://example.com`:
+            // `<a href="http://example.com">http://example.com</a>`
+
+            ->add('roles',
+
+                'choice', [
+                'choices'  => $this->getRolesPerms(),
+               'multiple' => true,
+                     'template' => 'AppBundle:CRUD:user_roles_list.html.twig'
+                ]
+                /**/
+//                )
+            )
             ->add('enabled', null, array('editable'=>true, 'label'=>'admin.user.enabled'))
 //            ->add('created')
             ->add('_action', 'actions', array(
@@ -143,7 +160,8 @@ class UserAdmin extends Admin
 
         $roles = $container->getParameter('security.role_hierarchy.roles');
 
-//        dump($roles); exit;
+
+        $securityContext = $this->container->get('security.authorization_checker');
 
         $formMapper
             ->with('admin.witget.main', array(
@@ -155,33 +173,47 @@ class UserAdmin extends Admin
             ->add('lastName', 'text', ['label'=>'admin.user.lastName'])
             ->add('patronymic', 'text', ['label'=>'admin.user.patronymic'])
 //            ->add('email', null, ['label'=>'admin.user.email'])
-            ->add('username', 'text', ['label'=>'admin.user.phone'])
-            ->add('contract', 'text', ['label'=>'admin.user.contract'])
-            ->add('contractCost', 'text', ['label'=>'admin.user.contract_cost'])
-            ->add('paymentDate','sonata_type_date_picker', array(
-                'dp_side_by_side'       => false,
-                'dp_use_current'        => false,
-                'widget' => 'single_text',
-                'format' => 'y-dd-MM',
-                'required' => false,
-                'label'=>'admin.user.contract_date',
-                'attr'=>['style' => 'width: 100px !important']
-            ))
-            ->end()
-            ->with('admin.witget.intersts', array(
-                'class' =>'col-sm-4',
-                'box-class' => 'box box-solid box-danger'/*,
+            ->add('username', 'text', ['label'=>'admin.user.phone']);
+
+
+        if ($securityContext->isGranted('ROLE_MODERATOR') === true){
+
+            $formMapper
+                ->add('contract', 'text', ['label'=>'admin.user.contract'])
+                ->add('contractCost', 'text', ['label'=>'admin.user.contract_cost'])
+                ->add('paymentDate','sonata_type_date_picker', array(
+                    'dp_side_by_side'       => false,
+                    'dp_use_current'        => false,
+                    'widget' => 'single_text',
+                    'format' => 'y-dd-MM',
+                    'required' => false,
+                    'label'=>'admin.user.contract_date',
+                    'attr'=>['style' => 'width: 100px !important']
+                ))
+                ->end()
+                ->with('admin.witget.intersts', array(
+                    'class' =>'col-sm-4',
+                    'box-class' => 'box box-solid box-danger'/*,
                 'description'=>'Products main create part'*/
-            ))
-            ->add('types', null, ['label'=>'admin.user.types'])
-            ->add('priceFrom', null, ['label'=>'admin.user.price_from'])
-            ->add('priceTo', null, ['label'=>'admin.user.price_to'])
-            ->add('regions', null, ['label'=>'admin.user.regions'])
-            ->add('roles', 'choice', array(
-                'choices'  => $this->getRolesPerms(),
-                'multiple' => true,
-            'label'=>'admin.user.roles'
-            ))
+                ))
+                ->add('types', null, ['label'=>'admin.user.types'])
+                ->add('priceFrom', null, ['label'=>'admin.user.price_from'])
+                ->add('priceTo', null, ['label'=>'admin.user.price_to'])
+                ->add('regions', null, ['label'=>'admin.user.regions']);
+        }
+
+        if ($securityContext->isGranted('ROLE_ADMIN') === true) {
+
+            $formMapper
+                ->add('roles', 'choice', array(
+                    'choices'  => $this->getRolesPerms(),
+                    'multiple' => true,
+                    'label'=>'admin.user.roles'
+                ));
+        }
+
+
+        $formMapper
             ->add('plainPassword', 'repeated', array('first_name' => 'password',
                 'required' => false,
                 'second_name' => 'confirm',
@@ -272,6 +304,14 @@ class UserAdmin extends Admin
     {
         parent::prePersist($object);
 
+        $securityContext = $this->container->get('security.authorization_checker');
+
+        if ($securityContext->isGranted('ROLE_MODERATOR') === true) {
+
+            $object->setRoles(['ROLE_CLIENT']);
+
+        }
+
         $this->pass = $object->getPlainPassword();
 
         $object->setEmail($object->getUsername() . '@rental-ufa.ru');
@@ -279,13 +319,17 @@ class UserAdmin extends Admin
         $this->updatePassword($object);
         $object->setPhone($object->getUsername());
 
-        $message = "http://rental-ufa.Ru %0A Login: {$object->getUsername()} %0A Password: ".$this->pass ;
-        $url = "http://smsc.ru/sys/send.php?login=tigran2006&psw=aa2009aa&phones={$object->getUsername()}&mes={$message}";
-        $t = file_get_contents($url);
+        if($object->getSentPassword() == true){
 
-        $log = $this->getConfigurationPool()->getContainer()->get('monolog.logger.command_create');
+            $message = "http://rental-ufa.Ru %0A Login: {$object->getUsername()} %0A Password: ".$this->pass ;
+            $url = "http://smsc.ru/sys/send.php?login=tigran2006&psw=aa2009aa&phones={$object->getUsername()}&mes={$message}";
+            $t = file_get_contents($url);
 
-        $log->info($t);
+            $log = $this->getConfigurationPool()->getContainer()->get('monolog.logger.command_create');
+
+            $log->info($t);
+
+        }
 
         if($object->getRegions()){
             foreach ($object->getRegions() as $rg){
@@ -361,7 +405,7 @@ class UserAdmin extends Admin
 
         $query = parent::createQuery($context);
 
-        $securityContext = $this->getConfigurationPool()->getContainer()->get('security.authorization_checker');
+        $securityContext = $this->container->get('security.authorization_checker');
 
 
         $query->andWhere(
@@ -377,19 +421,10 @@ class UserAdmin extends Admin
             );
             $query->setParameter('rls1', '%ROLE_CLIENT%');
 
-        }elseif ($securityContext->isGranted('ROLE_ADMIN') === true){
+        }
 
-            $query->andWhere(
-                $query->expr()->orX(
-                    $query->expr()->like($query->getRootAliases()[0] . '.roles', ':rls1'),
-                    $query->expr()->like($query->getRootAliases()[0] . '.roles', ':rls2')
-                )
-            );
-            $query->setParameter('rls1', '%ROLE_CLIENT%');
-            $query->setParameter('rls2', '%ROLE_MODERATOR%');
+        if($securityContext->isGranted('ROLE_SUPER_ADMIN') === true) {
 
-
-        }elseif($securityContext->isGranted('ROLE_SUPER_ADMIN') === true) {
             $query->andWhere(
                 $query->expr()->orX(
                     $query->expr()->like($query->getRootAliases()[0] . '.roles', ':rls1'),
@@ -401,6 +436,22 @@ class UserAdmin extends Admin
             $query->setParameter('rls2', '%ROLE_MODERATOR%');
             $query->setParameter('rls3', '%ROLE_ADMIN%');
         };
+
+        if ($securityContext->isGranted('ROLE_ADMIN') === true){
+
+            $query->andWhere(
+                $query->expr()->orX(
+                    $query->expr()->like($query->getRootAliases()[0] . '.roles', ':rls1'),
+                    $query->expr()->like($query->getRootAliases()[0] . '.roles', ':rls2')
+                )
+            );
+            $query->setParameter('rls1', '%ROLE_CLIENT%');
+            $query->setParameter('rls2', '%ROLE_MODERATOR%');
+
+
+        }
+
+
 
         $query->setParameter('st', true);
         return $query;

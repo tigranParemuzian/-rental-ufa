@@ -2,7 +2,10 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Traits\GedmoInfos;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Ads
@@ -12,6 +15,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Ads
 {
+    const IS_SHOW = 0, IS_ARCHIVE = 1, IS_DONE = 2;
+
+    use GedmoInfos;
+
     /**
      * @var int
      *
@@ -45,20 +52,6 @@ class Ads
     /**
      * @var string
      *
-     * @ORM\Column(name="last_name", type="string", length=255)
-     */
-    private $lastName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="father_name", type="string", length=255)
-     */
-    private $fatherName;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="phone", type="string", length=255)
      */
     private $phone;
@@ -87,14 +80,14 @@ class Ads
     /**
      * @var string
      *
-     * @ORM\Column(name="kb", type="string", length=50)
+     * @ORM\Column(name="kb", type="string", length=50, nullable=true)
      */
     private $kb;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="sq_meter", type="string", length=255)
+     * @ORM\Column(name="sq_meter", type="string", length=255, nullable=true)
      */
     private $sqMeter;
 
@@ -140,6 +133,16 @@ class Ads
      */
     private $types;
 
+    /**
+     * @var
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="ads")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $author;
+
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->id ? $this->price . ' р.'.$this->region : 'New Ads';
@@ -226,54 +229,6 @@ class Ads
     public function getFirstName()
     {
         return $this->firstName;
-    }
-
-    /**
-     * Set lastName
-     *
-     * @param string $lastName
-     *
-     * @return Ads
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * Get lastName
-     *
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * Set fatherName
-     *
-     * @param string $fatherName
-     *
-     * @return Ads
-     */
-    public function setFatherName($fatherName)
-    {
-        $this->fatherName = $fatherName;
-
-        return $this;
-    }
-
-    /**
-     * Get fatherName
-     *
-     * @return string
-     */
-    public function getFatherName()
-    {
-        return $this->fatherName;
     }
 
     /**

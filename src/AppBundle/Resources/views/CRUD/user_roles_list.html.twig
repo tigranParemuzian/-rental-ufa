@@ -1,8 +1,8 @@
 {% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
 
-{% block field%}
+{% block field %}
       <p>
-      {#{% if object.roles[0] == 'ROLE_CLIENT' %}
+      {% if object.roles[0] == 'ROLE_CLIENT' %}
          КЛИЕНT
       {% elseif object.roles[0] == 'ROLE_MODERATOR' %}
              МЕНЕДЖЕР
@@ -10,6 +10,6 @@
          Admin
       {% else %}
          Super Admin
-      {% endif %}#}
+      {% endif %}
    </p>
 {% endblock %}

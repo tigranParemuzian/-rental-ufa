@@ -205,6 +205,9 @@ file that was distributed with this source code.
                                             </a>
                                             <ul class="dropdown-menu dropdown-user">
                                                 <li style="text-align: center">
+                                                    <span class="glyphicon glyphicon-user"></span>&nbsp;{{ app.user.firstName ~' '~app.user.lastName }}
+                                                </li>
+                                                <li style="text-align: center">
                                                     <a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-log-out"></span> <span>Logout</span>
 
                                                     </a>
@@ -247,9 +250,9 @@ file that was distributed with this source code.
                         {% block side_bar_after_nav %}
                             <p class="text-center small" style="border-top: 1px solid #444444; padding-top: 10px">
                                 {% block side_bar_after_nav_content %}
-                                  {#  <p class="text-center">
-                                    <a href="{{ path('sonata_admin_dashboard') }}" rel="noreferrer">Dashboard</a>
-                                    </p>#}
+                                    <p class="text-center" style="color: white">
+                                        <span class="glyphicon glyphicon-user"></span>&nbsp;Привет!&nbsp;{{ app.user.firstName ~' '~app.user.lastName }}
+                                    </p>
                                 {% endblock %}
                             </p>
                         {% endblock %}

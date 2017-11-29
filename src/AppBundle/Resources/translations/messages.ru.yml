@@ -70,6 +70,7 @@ admin:
       showcase: ПОКАЗ
       archive: АРХИВ
       passed: СДАН
+      author: МЕНЕДЖЕР
 
   user:
       id: Id
@@ -104,5 +105,9 @@ admin:
         name: Имя
         isEnabled: Включен
         action: Действие
+
+Updated: Время
+date_range_start: from
+date_range_end: to
 
 

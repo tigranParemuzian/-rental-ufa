@@ -85,30 +85,31 @@ class AdsAdmin extends Admin
     protected function configureListFields(ListMapper $list)
     {
         $list
-            ->add('id', null, ['label'=>'admin.ads.id'])
             ->add('_action', 'actions',
                 array('actions' =>
                     array(
-                        'delete' => array(), 'edit' => array(), 'show'=>array()
+                        /*'delete' => array(), */'show' => array(), 'edit'=>array(),
                     ),
                     'label'=>'admin.types.action'
                 ))
-            ->add('price', null, ['label'=>'admin.ads.price', 'editable'=>true])
             ->add('state', 'choice', ['choices'=>$this->state,
                 'label'=>'admin.ads.state', 'editable'=>true])
+            ->add('updated','date')
+            ->add('id', null, ['label'=>'admin.ads.id'])
+            ->add('price', null, ['label'=>'admin.ads.price', 'editable'=>true])
+
             ->add('firstName', null, ['label'=>'admin.ads.fio', 'editable'=>true])
-//            ->add('lastName', null, ['label'=>'admin.ads.lastName', 'editable'=>true])
+            ->add('author.clientFullName', null, ['label'=>'admin.ads.author'])
+            ->add('region', null, ['label'=>'admin.ads.region'])
+            ->add('types', null, ['label'=>'admin.ads.types'])
 //            ->add('fatherName',null, ['label'=>'admin.ads.fatherName', 'editable'=>true])
             ->add('phone', null, ['label'=>'admin.ads.phone', 'editable'=>true])
-            ->add('description','textarea', ['label'=>'admin.ads.description', 'editable'=>true])
             ->add('street', 'text', ['label'=>'admin.ads.street', 'editable'=>true])
             ->add('house', 'text', ['label'=>'admin.ads.house', 'editable'=>true])
             ->add('kb', null, ['label'=>'admin.ads.kb', 'editable'=>true])
             ->add('sqMeter', null, ['label'=>'admin.ads.sqMeter', 'editable'=>true])
             ->add('renovation', 'choice', ['choices'=>$this->renovation, 'label'=>'admin.ads.renovation', 'editable'=>true])
             ->add('furnisher', null, ['label'=>'admin.ads.furnisher', 'editable'=>true])
-            ->add('region', null, ['label'=>'admin.ads.region'])
-            ->add('types', null, ['label'=>'admin.ads.types'])
             ->add('notAvalible', null, ['label'=>'admin.ads.notAvalible', 'editable'=>true])
             ->add('notConnected', null, ['label'=>'admin.ads.notConnected', 'editable'=>true])
             ;
@@ -119,6 +120,10 @@ class AdsAdmin extends Admin
     {
         $datagridMapper
             ->add('id')
+            ->add('updated', 'doctrine_orm_date_range', array(), 'sonata_type_date_range_picker',
+                array('field_options_start' => array('format' => 'yyyy-MM-dd'),
+                    'field_options_end' => array('format' => 'yyyy-MM-dd'))
+            )
             ->add('price', null, ['label'=>'admin.ads.price', 'editable'=>true])
             ->add('state', 'doctrine_orm_choice', ['label' => 'admin.ads.state'], 'choice', ['choices'=>$this->state, 'expanded' => true,
         'multiple' => true])
@@ -185,4 +190,21 @@ class AdsAdmin extends Admin
 
         return $query;
     }
+
+    public function prePersist($object){
+
+        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+       $object->setAuthor($user);
+
+    }
+
+//    public function preUpdate($object){
+//
+//
+//        $user = $this->container->get('security.token_storage')->getToken()->getUser();
+//
+//        $object->setAuthor($user);
+//
+//    }
 }
