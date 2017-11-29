@@ -45,6 +45,19 @@ services:
         tags:
             - {name: sonata.admin, manager_type: orm, group: admin.groups.ads , label: admin.labels.user }
 
+
+    app.admin.manager:
+        class: AppBundle\Admin\ManagerAdmin
+        arguments: [~, AppBundle\Entity\User, SonataAdminBundle:CRUD, '@service_container']
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin.groups.ads , label: admin.labels.manager }
+
+    app.admin.archive.manager:
+        class: AppBundle\Admin\ArchveManagerAdmin
+        arguments: [~, AppBundle\Entity\User, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin.groups.ads , label: admin.labels.manager_old }
+
     app.admin.archive.user:
         class: AppBundle\Admin\ArchveUserAdmin
         arguments: [~, AppBundle\Entity\User, SonataAdminBundle:CRUD]

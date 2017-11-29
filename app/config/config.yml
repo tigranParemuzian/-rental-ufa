@@ -176,6 +176,8 @@ sonata_admin:
                     - app.admin.disables
                     - app.admin.user
                     - app.admin.archive.user
+                    - app.admin.manager
+                    - app.admin.archive.manager
                 roles: [  ROLE_MODERATOR, ROLE_ADMIN, ROLE_SUPER_ADMIN, ROLE_CLIENT ]
 
 # stfo doctrine extensions
