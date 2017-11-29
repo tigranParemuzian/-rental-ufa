@@ -106,9 +106,9 @@ class ManagerAdmin extends Admin
             ->add('firstName', null, ['label'=>'admin.user.firstName'])
             ->add('enabled',null,['label'=>'admin.user.enabled'])
             ->add('phone',null,['label'=>'admin.user.phone'])
-            ->add('roles', 'doctrine_orm_string', ['label'=>'admin.user.roles'], 'choice', array(
+            /*->add('roles', 'doctrine_orm_string', ['label'=>'admin.user.roles'], 'choice', array(
                 'choices'  => $this->roles,
-            ))
+            ))*/
             ->add('created', 'doctrine_orm_datetime_range',['label'=>'admin.user.created'],'sonata_type_datetime_range_picker',
                 array('field_options_start' => array('format' => 'yyyy-MM-dd HH:mm:ss'),
                     'field_options_end' => array('format' => 'yyyy-MM-dd HH:mm:ss'))
@@ -122,24 +122,25 @@ class ManagerAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-//            ->addIdentifier('phone', null, ['label'=>'admin.user.email'])
-            ->add('username', null, ['label'=>'admin.user.phone'])
+            ->addIdentifier('id', null, ['label'=>'admin.user.id'])
+            ->add('updated', 'date')
+            ->add('username', null, ['label'=>'admin.user.username'])
             ->add('lastName', null, ['label'=>'admin.user.lastName'])
             ->add('firstName', null, ['label'=>'admin.user.firstName'])
 //            ->add('phone')
             // Output for value `http://example.com`:
             // `<a href="http://example.com">http://example.com</a>`
 
-            ->add('roles',
-
-                'choice', [
-                'choices'  => $this->getRolesPerms(),
-               'multiple' => true,
-                     'template' => 'AppBundle:CRUD:user_roles_list.html.twig'
-                ]
-                /**/
-//                )
-            )
+//            ->add('roles',
+//
+//                'choice', [
+//                'choices'  => $this->getRolesPerms(),
+//               'multiple' => true,
+//                     'template' => 'AppBundle:CRUD:user_roles_list.html.twig'
+//                ]
+//                /**/
+////                )
+//            )
             ->add('enabled', null, array('editable'=>true, 'label'=>'admin.user.enabled'))
 //            ->add('created')
             ->add('_action', 'actions', array(

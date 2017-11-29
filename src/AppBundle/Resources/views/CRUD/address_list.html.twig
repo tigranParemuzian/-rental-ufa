@@ -1,0 +1,7 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+      <p>
+      {{ object.street ~ ' ' ~ object.house ~ ', '~object.firstName  }}
+   </p>
+{% endblock %}

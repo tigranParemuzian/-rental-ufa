@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Traits\File;
+use AppBundle\Traits\GedmoInfos;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Entity\User as BaseUser;
 use JMS\Serializer\Annotation\Groups;
@@ -22,7 +23,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class User extends BaseUser
 {
-    use File;
+    use File, GedmoInfos;
 
     /**
      * @ORM\Id

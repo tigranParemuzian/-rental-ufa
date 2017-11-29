@@ -1,0 +1,14 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+    <div class="btn-group">
+        {% if 'User' in object.className %}
+        <a href="{{ path('admin_app_user_delete', {'id':object.id}) }}" class="btn btn-sm btn-default delete_link" title="Удалить">
+        {% else %}
+        <a href="{{ path('admin_app_ads_delete', {'id':object.id}) }}" class="btn btn-sm btn-default delete_link" title="Удалить">
+            {% endif %}
+            <i class="fa fa-times" aria-hidden="true"></i>
+            Удалить
+        </a>
+    </div>
+{% endblock %}

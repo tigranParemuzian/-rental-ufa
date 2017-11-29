@@ -87,27 +87,36 @@ class OldAdsAdmin extends Admin
     protected function configureListFields(ListMapper $list)
     {
 
-        $list
-            ->add('id', null, ['label'=>'admin.ads.id'])
-            ->add('price', null, ['label'=>'admin.ads.price', 'editable'=>true])
-            ->add('state', 'choice', ['choices'=>$this->state, 'label'=>'admin.ads.state', 'editable'=>true])
-            ->add('firstName', null, ['label'=>'admin.ads.fio', 'editable'=>true])
-//            ->add('lastName', null, ['label'=>'admin.ads.lastName', 'editable'=>true])
-//            ->add('fatherName',null, ['label'=>'admin.ads.fatherName', 'editable'=>true])
-            ->add('phone', null, ['label'=>'admin.ads.phone', 'editable'=>true])
-            ->add('description','textarea', ['label'=>'admin.ads.description', 'editable'=>true])
-            ->add('street', 'text', ['label'=>'admin.ads.street', 'editable'=>true])
-            ->add('house', 'text', ['label'=>'admin.ads.house', 'editable'=>true])
-            ->add('kb', null, ['label'=>'admin.ads.kb', 'editable'=>true])
-            ->add('sqMeter', null, ['label'=>'admin.ads.sqMeter', 'editable'=>true])
-            ->add('renovation', 'choice', ['choices'=>$this->renovation, 'label'=>'admin.ads.renovation', 'editable'=>true])
-            ->add('furnisher', null, ['label'=>'admin.ads.furnisher', 'editable'=>true])
-            ->add('region', null, ['label'=>'admin.ads.region'])
-            ->add('types', null, ['label'=>'admin.ads.types'])
-            ->add('notAvalible', null, ['label'=>'admin.ads.notAvalible', 'editable'=>true])
-            ->add('notConnected', null, ['label'=>'admin.ads.notConnected', 'editable'=>true])
-          ;
+        $securityContext = $this->container->get('security.authorization_checker');
 
+        $list
+            ->add('id', null, ['label'=>'admin.ads.id']);
+
+
+        if($securityContext->isGranted('ROLE_MODERATOR') === true || $securityContext->isGranted('ROLE_ADMIN') === true){
+
+            $list
+                ->add('state', 'choice', ['choices'=>$this->state,
+                    'label'=>'admin.ads.state', 'editable'=>true])
+                ->add('author.clientFullName', null, ['label'=>'admin.ads.author'])
+                ->add('notAvalible', null, ['label'=>'admin.ads.notAvalible', 'editable'=>true])
+                ->add('notConnected', null, ['label'=>'admin.ads.notConnected', 'editable'=>true])
+
+            ;
+        }
+        $list
+            ->add('updated','date')
+            ->add('street', 'text', ['label'=>'admin.ads.object', 'template'=>'AppBundle:CRUD:address_list.html.twig'])
+            ->add('types', null, ['label'=>'admin.ads.types'])
+            ->add('phone', null, ['label'=>'admin.ads.phone', 'editable'=>true])
+            ->add('furnisher', null, ['label'=>'admin.ads.furnisher', 'editable'=>true])
+            ->add('price', null, ['label'=>'admin.ads.price', 'editable'=>true]);
+
+        if($securityContext->isGranted('ROLE_ADMIN') === true) {
+
+            $list
+                ->add('lastName', null, ['template' => 'AppBundle:CRUD:rm_object_archive.html.twig', 'label' => 'rm']);
+        }
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

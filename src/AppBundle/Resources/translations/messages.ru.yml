@@ -73,6 +73,7 @@ admin:
       archive: АРХИВ
       passed: СДАН
       author: МЕНЕДЖЕР
+      object: Объект
 
   user:
       id: Id
@@ -108,8 +109,8 @@ admin:
         isEnabled: Включен
         action: Действие
 
-Updated: Время
+Updated: Добавлен
 date_range_start: from
 date_range_end: to
-
+rm: Удалить
 

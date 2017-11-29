@@ -141,6 +141,16 @@ class Ads
     private $author;
 
     /**
+     * This function is used to get object class name
+     *
+     * @return string
+     */
+    public function getClassName(){
+        return get_class($this);
+    }
+
+
+    /**
      * @return string
      */
     public function __toString()

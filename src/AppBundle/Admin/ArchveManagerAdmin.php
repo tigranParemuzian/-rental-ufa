@@ -105,9 +105,9 @@ class ArchveManagerAdmin extends Admin
             ->add('firstName', null, ['label'=>'admin.user.firstName'])
             ->add('enabled',null,['label'=>'admin.user.enabled'])
             ->add('phone',null,['label'=>'admin.user.phone'])
-            ->add('roles', 'doctrine_orm_string', ['label'=>'admin.user.roles'], 'choice', array(
+           /* ->add('roles', 'doctrine_orm_string', ['label'=>'admin.user.roles'], 'choice', array(
                 'choices'  => array(),
-            ))
+            ))*/
             ->add('created', 'doctrine_orm_datetime_range',['label'=>'admin.user.created'],'sonata_type_datetime_range_picker',
                 array('field_options_start' => array('format' => 'yyyy-MM-dd HH:mm:ss'),
                     'field_options_end' => array('format' => 'yyyy-MM-dd HH:mm:ss'))
@@ -120,25 +120,18 @@ class ArchveManagerAdmin extends Admin
      */
     protected function configureListFields(ListMapper $listMapper)
     {
+        $securityContext = $this->container->get('security.authorization_checker');
+
         $listMapper
-            ->addIdentifier('email', null, ['label'=>'admin.user.email'])
+            ->addIdentifier('id', null, ['label'=>'admin.user.id'])
+            ->add('updated', 'date', [])
+            ->add('lastName', null, ['label'=>'admin.user.lastName', 'template'=>'AppBundle:CRUD:fio_admin_list.html.twig'])
             ->add('username', null, ['label'=>'admin.user.phone'])
-            ->add('lastName', null, ['label'=>'admin.user.lastName'])
-            ->add('firstName', null, ['label'=>'admin.user.firstName'])
-//            ->add('phone')
-//            ->add('roles', 'choice', array(
-//                'choices'  => $this->getRolesPerms(),
-//               /* 'multiple' => true,*/
-//                'template' => 'AppBundle:CRUD:user_roles_list.html.twig')
-//            )
-            ->add('enabled', null, array('editable'=>true, 'label'=>'admin.user.enabled'))
-//            ->add('created')
-            /*->add('_action', 'actions', array(
-                'actions' => array(
-                    'delete' => array(),
-                )
-            ))*/
-        ;
+            ->add('enabled', null, array('editable'=>true, 'label'=>'admin.user.enabled'));
+        if($securityContext->isGranted('ROLE_ADMIN') === true) {
+
+            $listMapper->add('patronymic', null, ['template' => 'AppBundle:CRUD:rm_object_archive.html.twig', 'label' => 'rm']);
+        }
     }
 
     /**
