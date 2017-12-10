@@ -275,7 +275,7 @@ class AdsAdmin extends Admin
             }
             if((int)$user->getPriceTo() >0) {
                 $query->andWhere(
-                    $query->expr()->lt($query->getRootAliases()[0] . '.price', ':max')
+                    $query->expr()->lte($query->getRootAliases()[0] . '.price', ':max')
                 );
                 $query->setParameter('max', (int)$user->getPriceTo());
             }
