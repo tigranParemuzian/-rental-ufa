@@ -309,6 +309,7 @@ class UserAdmin extends Admin
 
         }
 
+        $object->setRoles(['ROLE_CLIENT']);
         $object->setManager($this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser());
     }
 
