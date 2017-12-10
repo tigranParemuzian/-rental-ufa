@@ -141,6 +141,16 @@ class Ads
     private $author;
 
     /**
+     * This function is used to get object class name
+     *
+     * @return string
+     */
+    public function getClassName(){
+        return get_class($this);
+    }
+
+
+    /**
      * @return string
      */
     public function __toString()
@@ -501,5 +511,29 @@ class Ads
     public function setNotConnected($notConnected)
     {
         $this->notConnected = $notConnected;
+    }
+
+    /**
+     * Set author
+     *
+     * @param \AppBundle\Entity\User $author
+     *
+     * @return Ads
+     */
+    public function setAuthor(\AppBundle\Entity\User $author = null)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
     }
 }

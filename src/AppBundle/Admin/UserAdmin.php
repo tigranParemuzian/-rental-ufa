@@ -123,7 +123,8 @@ class UserAdmin extends Admin
             ->add('updated', 'date', [])
             ->add('lastName', null, ['label'=>'admin.user.lastName', 'template'=>'AppBundle:CRUD:fio_admin_list.html.twig'])
             ->add('username', null, ['label'=>'admin.user.phone'])
-            ->add('enabled', null, array('editable'=>true, 'label'=>'admin.user.enabled'))
+            ->add('enabled', null, ['editable'=>true, 'label'=>'admin.user.enabled'])
+            ->add('manager.clientFullName', null, ['label'=>'admin.user.managerList'])
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -269,21 +270,6 @@ class UserAdmin extends Admin
         $this->updatePassword($object);
         $object->setPhone($object->getUsername());
 
-
-
-        if($object->getRegions()){
-            foreach ($object->getRegions() as $rg){
-                $rg->setUser($object);
-            }
-        }
-
-        if($object->getTypes()){
-            foreach ($object->getTypes() as $rg){
-                $rg->setUser($object);
-            }
-        }
-
-
     }
 
     public function prePersist($object)
@@ -317,17 +303,7 @@ class UserAdmin extends Admin
 
         }
 
-        if($object->getRegions()){
-            foreach ($object->getRegions() as $rg){
-                $rg->setUser($object);
-            }
-        }
-
-        if($object->getTypes()){
-            foreach ($object->getTypes() as $rg){
-                $rg->setUser($object);
-            }
-        }
+        $object->setManager($this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser());
     }
 
     /**

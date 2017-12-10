@@ -97,6 +97,7 @@ class ArchveManagerAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $this->getRolesPerms();
+
         $datagridMapper
             ->add('id',null,['label'=>'admin.user.id'])
             ->add('email',null,['label'=>'admin.user.email'])

@@ -102,6 +102,7 @@ admin:
       created: Сделано
       clients: КЛИЕНТЫ
       manager: МЕНЕДЖЕР
+      managerList: Менеджер
       admin: Админ
   types:
         main: Главный

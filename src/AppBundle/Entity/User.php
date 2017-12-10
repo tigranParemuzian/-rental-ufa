@@ -127,13 +127,21 @@ class User extends BaseUser
 
     /**
      * @var
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Regions", mappedBy="user")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Regions", inversedBy="user")
+     * @ORM\JoinTable(name="region_user",
+     *      joinColumns={ @ORM\JoinColumn(name="region_id", referencedColumnName="id") },
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id", unique=true)})
+     * )
      */
     private $regions;
 
     /**
      * @var
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Types", mappedBy="user")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Types", inversedBy="user")
+     * @ORM\JoinTable(name="type_user",
+     *      joinColumns={ @ORM\JoinColumn(name="type_id", referencedColumnName="id") },
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id", unique=true)})
+     * )
      */
     private $types;
 
@@ -142,6 +150,13 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ads", mappedBy="author")
      */
     private $ads;
+
+    /**
+     * @var
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="manager_id", referencedColumnName="id")
+     */
+    private $manager;
 
     public function __toString()
     {
@@ -564,5 +579,29 @@ class User extends BaseUser
     public function getAds()
     {
         return $this->ads;
+    }
+
+    /**
+     * Set manager
+     *
+     * @param \AppBundle\Entity\User $manager
+     *
+     * @return User
+     */
+    public function setManager(\AppBundle\Entity\User $manager = null)
+    {
+        $this->manager = $manager;
+
+        return $this;
+    }
+
+    /**
+     * Get manager
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getManager()
+    {
+        return $this->manager;
     }
 }

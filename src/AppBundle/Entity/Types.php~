@@ -44,8 +44,7 @@ class Types
 
     /**
      * @var
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="types")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="types")
      */
     private $user;
 
@@ -177,5 +176,29 @@ class Types
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Add user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Types
+     */
+    public function addUser(\AppBundle\Entity\User $user)
+    {
+        $this->user[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \AppBundle\Entity\User $user
+     */
+    public function removeUser(\AppBundle\Entity\User $user)
+    {
+        $this->user->removeElement($user);
     }
 }

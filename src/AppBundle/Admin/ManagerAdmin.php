@@ -226,6 +226,18 @@ class ManagerAdmin extends Admin
 
     }
 
+   /* public function postRemove($object)
+    {
+        parent::preRemove($object);
+
+        if(!$object->getRegions()->isEmpty()){
+            foreach ($)
+        }
+        $this->updatePassword($object);
+        $object->setPhone($object->getUsername());
+
+    }*/
+
     public function prePersist($object)
     {
         parent::prePersist($object);
