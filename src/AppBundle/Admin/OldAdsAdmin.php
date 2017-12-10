@@ -115,7 +115,7 @@ class OldAdsAdmin extends Admin
         if($securityContext->isGranted('ROLE_MODERATOR') === true || $securityContext->isGranted('ROLE_ADMIN') === true){
 
             $list
-                ->add('author.clientFullName', null, ['label'=>'admin.user.managerList'])
+//                ->add('author.clientFullName', null, ['label'=>'admin.user.managerList'])
                 ->add('notAvalible', null, ['label'=>'admin.ads.notAvalible', 'editable'=>true])
                 ->add('notConnected', null, ['label'=>'admin.ads.notConnected', 'editable'=>true])
             ;
