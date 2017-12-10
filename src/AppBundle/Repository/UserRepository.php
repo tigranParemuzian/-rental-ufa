@@ -21,4 +21,19 @@ class UserRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()->getResult()
             ;
     }
+
+    public function findSingle($id){
+
+        return $this->getEntityManager()
+            ->createQueryBuilder()
+            ->select('u')
+            ->from('AppBundle:User', 'u')
+            ->leftJoin('u.regions', 'r')->addSelect('r')
+            ->leftJoin('u.types', 't')->addSelect('t')
+            ->where('u.id = :uId')
+            ->setParameter('uId', $id)
+            ->getQuery()->getResult()
+
+            ;
+    }
 }
