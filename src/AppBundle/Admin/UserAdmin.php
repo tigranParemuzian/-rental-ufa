@@ -108,7 +108,7 @@ class UserAdmin extends Admin
                 'choices'  => array(),
             ))*/
 
-            $datagridMapper->add('manager.firstName', null, ['label'=>'admin.user.managerList']);
+            $datagridMapper->add('manager', null, ['label'=>'admin.user.managerList']);
 
 
             $datagridMapper
@@ -130,7 +130,7 @@ class UserAdmin extends Admin
             ->add('lastName', null, ['label'=>'admin.user.lastName', 'template'=>'AppBundle:CRUD:fio_admin_list.html.twig'])
             ->add('username', null, ['label'=>'admin.user.phone'])
             ->add('enabled', null, ['editable'=>true, 'label'=>'admin.user.enabled'])
-            ->add('manager.clientFullName', null, ['label'=>'admin.user.managerList'])
+            ->add('manager', null, ['label'=>'admin.user.managerList'])
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -310,7 +310,7 @@ class UserAdmin extends Admin
         }
 
         $object->setRoles(['ROLE_CLIENT']);
-        $object->setManager($this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser());
+        $object->setManager($this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser()->getClientFullName());
     }
 
     /**

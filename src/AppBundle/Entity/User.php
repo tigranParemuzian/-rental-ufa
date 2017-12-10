@@ -130,7 +130,7 @@ class User extends BaseUser
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Regions", inversedBy="user")
      * @ORM\JoinTable(name="region_user",
      *      joinColumns={ @ORM\JoinColumn(name="region_id", referencedColumnName="id") },
-     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id", unique=true)})
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")})
      * )
      */
     private $regions;
@@ -153,8 +153,7 @@ class User extends BaseUser
 
     /**
      * @var
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User")
-     * @ORM\JoinColumn(name="manager_id", referencedColumnName="id")
+     * @ORM\Column(name="manager_name", type="string", length=255, nullable=true)
      */
     private $manager;
 
@@ -588,7 +587,7 @@ class User extends BaseUser
      *
      * @return User
      */
-    public function setManager(\AppBundle\Entity\User $manager = null)
+    public function setManager($manager = null)
     {
         $this->manager = $manager;
 
