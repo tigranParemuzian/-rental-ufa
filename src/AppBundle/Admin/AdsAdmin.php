@@ -214,60 +214,77 @@ class AdsAdmin extends Admin
 
         $query = parent::createQuery($context);
 
+        /**
+         * get User
+         */
         $user = $this->container->get('security.token_storage')->getToken()->getUser();
 
-        $em = $this->container->get('doctrine')->getManager();
+        /**
+         * get Role current user
+         */
+        $securityContext = $this->container->get('security.authorization_checker');
 
-        $user = $em->getRepository('AppBundle:User')->findSingle($user->getId())[0];
+        /**
+         * check user is client
+         * todo: only for client
+         */
+        if($securityContext->isGranted('ROLE_CLIENT') === true){
 
-        $regions = [];
-        if(!($user->getRegions()->isEmpty())){
-            foreach ($user->getRegions() as $region){
+            $em = $this->container->get('doctrine')->getManager();
 
-                $regions[]=$region->getId();
+            $user = $em->getRepository('AppBundle:User')->findSingle($user->getId())[0];
+
+            $regions = [];
+            if(!($user->getRegions()->isEmpty())){
+                foreach ($user->getRegions() as $region){
+
+                    $regions[]=$region->getId();
+
+                }
+
+                $query->andWhere(
+                    $query->expr()->in($query->getRootAliases()[0] . '.region', ':rg')
+                );
+                $query->setParameter('rg', $regions);
 
             }
 
-            $query->andWhere(
-                $query->expr()->in($query->getRootAliases()[0] . '.region', ':rg')
-            );
-            $query->setParameter('rg', $regions);
+            $types = [];
 
-        }
+            if(!($user->getTypes()->isEmpty())){
+                foreach ($user->getTypes() as $region){
 
-        $types = [];
+                    $types[]=$region->getId();
 
-        if(!($user->getTypes()->isEmpty())){
-            foreach ($user->getTypes() as $region){
+                }
 
-                $types[]=$region->getId();
+                $query->andWhere(
+                    $query->expr()->in($query->getRootAliases()[0] . '.types', ':tp')
+                );
+                $query->setParameter('tp', $types);
 
             }
 
-            $query->andWhere(
-                $query->expr()->in($query->getRootAliases()[0] . '.types', ':tp')
-            );
-            $query->setParameter('tp', $types);
+
+
+            if((int)$user->getPriceFrom() >0){
+                $query->andWhere(
+                    $query->expr()->gte($query->getRootAliases()[0] . '.price', ':min')
+                );
+                $query->setParameter('min', (int)$user->getPriceFrom());
+            }
+            if((int)$user->getPriceTo() >0) {
+                $query->andWhere(
+                    $query->expr()->lt($query->getRootAliases()[0] . '.price', ':max')
+                );
+                $query->setParameter('max', (int)$user->getPriceTo());
+            }
 
         }
 
         $query->andWhere(
             $query->expr()->in($query->getRootAliases()[0] . '.state', ':st')
         );
-
-        if((int)$user->getPriceFrom() >0){
-            $query->andWhere(
-                $query->expr()->gte($query->getRootAliases()[0] . '.price', ':min')
-            );
-            $query->setParameter('min', (int)$user->getPriceFrom());
-        }
-        if((int)$user->getPriceTo() >0) {
-            $query->andWhere(
-                $query->expr()->lt($query->getRootAliases()[0] . '.price', ':max')
-            );
-            $query->setParameter('max', (int)$user->getPriceTo());
-        }
-
         $query->setParameter('st', [Ads::IS_SHOW, Ads::IS_DONE]);
 
 
