@@ -273,7 +273,6 @@ class UserAdmin extends Admin
             $object->setSentPassword(false);
         }
 
-        $object->setRoles(['ROLE_CLIENT']);
         $this->updatePassword($object);
         $object->setPhone($object->getUsername());
 
