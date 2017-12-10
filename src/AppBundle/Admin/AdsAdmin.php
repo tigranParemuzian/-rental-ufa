@@ -87,8 +87,12 @@ class AdsAdmin extends Admin
     {
         $securityContext = $this->container->get('security.authorization_checker');
 
+        if($securityContext->isGranted('ROLE_MODERATOR') === true || $securityContext->isGranted('ROLE_ADMIN') === true){
+            $list
+                ->add('updated','date');
+        }
+
         $list
-            ->add('updated','date')
             ->add('street', 'text', ['label'=>'admin.ads.object', 'template'=>'AppBundle:CRUD:address_list.html.twig'])
             ->add('types', null, ['label'=>'admin.ads.types'])
             ->add('price', null, ['label'=>'admin.ads.price', 'editable'=>true])
@@ -136,15 +140,16 @@ class AdsAdmin extends Admin
             $datagridMapper
                 ->add('notAvalible', null, ['label'=>'admin.ads.notAvalible', 'editable'=>true])
                 ->add('notConnected', null, ['label'=>'admin.ads.notConnected', 'editable'=>true])
+                ->add('updated', 'doctrine_orm_date_range', array(), 'sonata_type_date_range_picker',
+                    array('field_options_start' => array('format' => 'yyyy-MM-dd'),
+                        'field_options_end' => array('format' => 'yyyy-MM-dd'))
+                )
                 ;
         }
 
             $datagridMapper
             ->add('id')
-            ->add('updated', 'doctrine_orm_date_range', array(), 'sonata_type_date_range_picker',
-                array('field_options_start' => array('format' => 'yyyy-MM-dd'),
-                    'field_options_end' => array('format' => 'yyyy-MM-dd'))
-            )
+
             ->add('price', null, ['label'=>'admin.ads.price', 'editable'=>true])
             ->add('state', 'doctrine_orm_choice', ['label' => 'admin.ads.state'], 'choice', ['choices'=>$this->state, 'expanded' => true,
         'multiple' => true])
@@ -185,7 +190,6 @@ class AdsAdmin extends Admin
         }
 
         $show
-
             ->add('id')
             ->add('price', null, ['label'=>'admin.ads.price'])
             ->add('firstName', null, ['label'=>'admin.ads.fio'])
