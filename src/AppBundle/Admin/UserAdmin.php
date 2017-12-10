@@ -102,10 +102,16 @@ class UserAdmin extends Admin
             ->add('lastName', null, ['label'=>'admin.user.lastName'])
             ->add('firstName', null, ['label'=>'admin.user.firstName'])
             ->add('enabled',null,['label'=>'admin.user.enabled'])
-            ->add('phone',null,['label'=>'admin.user.phone'])
+            ->add('phone',null,['label'=>'admin.user.phone']);
+
             /*add('roles', 'doctrine_orm_string', ['label'=>'admin.user.roles'], 'choice', array(
                 'choices'  => array(),
             ))*/
+
+            $datagridMapper->add('manager.firstName', null, ['label'=>'admin.user.managerList']);
+
+
+            $datagridMapper
             ->add('created', 'doctrine_orm_datetime_range',['label'=>'admin.user.created'],'sonata_type_datetime_range_picker',
                 array('field_options_start' => array('format' => 'yyyy-MM-dd HH:mm:ss'),
                     'field_options_end' => array('format' => 'yyyy-MM-dd HH:mm:ss'))
