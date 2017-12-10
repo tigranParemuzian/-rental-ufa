@@ -23,6 +23,13 @@ class AdsAdmin extends Admin
     protected $state;
     protected $container;
 
+
+    protected $datagridValues = array(
+        '_page' => 1,
+        '_sort_order' => 'DESC', // sort direction
+        '_sort_by' => 'created' // field name
+    );
+
     public function __construct($code, $class, $baseControllerName, $container = null)
     {
         parent::__construct($code, $class, $baseControllerName);
@@ -80,28 +87,38 @@ class AdsAdmin extends Admin
     {
         $securityContext = $this->container->get('security.authorization_checker');
 
-        $list
-            ->add('id', null, ['label'=>'admin.ads.id']);
 
 
-        if($securityContext->isGranted('ROLE_MODERATOR') === true || $securityContext->isGranted('ROLE_ADMIN') === true){
 
-            $list
-                ->add('state', 'choice', ['choices'=>$this->state,
-                    'label'=>'admin.ads.state', 'editable'=>true])
-                ->add('author.clientFullName', null, ['label'=>'admin.ads.author'])
-                ->add('notAvalible', null, ['label'=>'admin.ads.notAvalible', 'editable'=>true])
-                ->add('notConnected', null, ['label'=>'admin.ads.notConnected', 'editable'=>true])
-
-            ;
-        }
         $list
             ->add('updated','date')
             ->add('street', 'text', ['label'=>'admin.ads.object', 'template'=>'AppBundle:CRUD:address_list.html.twig'])
             ->add('types', null, ['label'=>'admin.ads.types'])
-            ->add('phone', null, ['label'=>'admin.ads.phone', 'editable'=>true])
-            ->add('furnisher', null, ['label'=>'admin.ads.furnisher', 'editable'=>true])
             ->add('price', null, ['label'=>'admin.ads.price', 'editable'=>true])
+            ->add('phone', null, ['label'=>'admin.ads.phone', 'editable'=>true])
+
+
+        ;
+        if($securityContext->isGranted('ROLE_MODERATOR') === true || $securityContext->isGranted('ROLE_ADMIN') === true){
+        $list
+                ->add('state', 'choice', ['choices'=>$this->state,
+                    'label'=>'admin.ads.state', 'editable'=>true])
+        ;
+        }
+        $list
+        ->add('furnisher', null, ['label'=>'admin.ads.furnisher', 'editable'=>true]);
+        if($securityContext->isGranted('ROLE_MODERATOR') === true || $securityContext->isGranted('ROLE_ADMIN') === true){
+
+        $list
+            ->add('author.clientFullName', null, ['label'=>'admin.user.managerList'])
+            ->add('notAvalible', null, ['label'=>'admin.ads.notAvalible', 'editable'=>true])
+            ->add('notConnected', null, ['label'=>'admin.ads.notConnected', 'editable'=>true])
+
+        ;
+    }
+        $list
+        ->add('id', null, ['label'=>'admin.ads.id'])
+
     ->add('_action', 'actions',
         array('actions' =>
             array(
