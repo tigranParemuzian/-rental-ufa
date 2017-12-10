@@ -166,7 +166,7 @@ class UserAdmin extends Admin
             ->add('patronymic', 'text', ['label'=>'admin.user.patronymic'])
 //            ->add('email', null, ['label'=>'admin.user.email'])
             ->add('username', 'text', ['label'=>'admin.user.phone'])
-            ->add('contract', 'text', ['label'=>'admin.user.contract'])
+            ->add('contract', 'text', ['label'=>'admin.user.contract', 'required'=>false])
 
         ;
 
@@ -179,7 +179,7 @@ class UserAdmin extends Admin
                     'box-class' => 'box box-solid box-danger'/*,
                 'description'=>'Products main create part'*/
                 ))
-                ->add('contractCost', 'text', ['label'=>'admin.user.contract_cost'])
+                ->add('contractCost', 'text', ['label'=>'admin.user.contract_cost','required' => false,])
                 ->add('paymentDate','sonata_type_date_picker', array(
                     'dp_side_by_side'       => false,
                     'dp_use_current'        => false,
