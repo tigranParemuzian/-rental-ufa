@@ -140,7 +140,7 @@ class User extends BaseUser
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Types", inversedBy="user")
      * @ORM\JoinTable(name="type_user",
      *      joinColumns={ @ORM\JoinColumn(name="type_id", referencedColumnName="id") },
-     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id", unique=true)})
+     *      inverseJoinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")})
      * )
      */
     private $types;
