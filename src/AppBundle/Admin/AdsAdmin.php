@@ -87,46 +87,43 @@ class AdsAdmin extends Admin
     {
         $securityContext = $this->container->get('security.authorization_checker');
 
-
-
-
         $list
             ->add('updated','date')
             ->add('street', 'text', ['label'=>'admin.ads.object', 'template'=>'AppBundle:CRUD:address_list.html.twig'])
             ->add('types', null, ['label'=>'admin.ads.types'])
             ->add('price', null, ['label'=>'admin.ads.price', 'editable'=>true])
             ->add('phone', null, ['label'=>'admin.ads.phone', 'editable'=>true])
-
-
         ;
+
         if($securityContext->isGranted('ROLE_MODERATOR') === true || $securityContext->isGranted('ROLE_ADMIN') === true){
-        $list
+            $list
                 ->add('state', 'choice', ['choices'=>$this->state,
-                    'label'=>'admin.ads.state', 'editable'=>true])
-        ;
+                    'label'=>'admin.ads.state', 'editable'=>true]);
         }
+
         $list
-        ->add('furnisher', null, ['label'=>'admin.ads.furnisher', 'editable'=>true]);
+            ->add('furnisher', null, ['label'=>'admin.ads.furnisher', 'editable'=>true])
+        ;
+
         if($securityContext->isGranted('ROLE_MODERATOR') === true || $securityContext->isGranted('ROLE_ADMIN') === true){
 
-        $list
-            ->add('author.clientFullName', null, ['label'=>'admin.user.managerList'])
-            ->add('notAvalible', null, ['label'=>'admin.ads.notAvalible', 'editable'=>true])
-            ->add('notConnected', null, ['label'=>'admin.ads.notConnected', 'editable'=>true])
-
-        ;
-    }
-        $list
-        ->add('id', null, ['label'=>'admin.ads.id'])
-
-    ->add('_action', 'actions',
-        array('actions' =>
-            array(
-               'show' => array(), 'edit'=>array(), 'delete'=>[]
-            ),
-            'label'=>'admin.types.action'
-        ))
+            $list
+                ->add('author.clientFullName', null, ['label'=>'admin.user.managerList'])
+                ->add('notAvalible', null, ['label'=>'admin.ads.notAvalible', 'editable'=>true])
+                ->add('notConnected', null, ['label'=>'admin.ads.notConnected', 'editable'=>true])
             ;
+        }
+
+        $list
+            ->add('id', null, ['label'=>'admin.ads.id'])
+            ->add('_action', 'actions',
+                array('actions' =>
+                    array(
+                       'show' => array(), 'edit'=>array(), 'delete'=>[]
+                    ),
+                    'label'=>'admin.types.action'
+                ))
+                    ;
 
     }
 
