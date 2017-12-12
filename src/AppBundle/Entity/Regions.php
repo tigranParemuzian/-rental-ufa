@@ -41,13 +41,6 @@ class Regions
      */
     private $ads;
 
-    /**
-     * @var
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="regions")
-     */
-    private $user;
-
-
     public function __toString()
     {
         return $this->id ? $this->name : 'New Region';
@@ -151,53 +144,5 @@ class Regions
     public function getAds()
     {
         return $this->ads;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \AppBundle\Entity\User $user
-     *
-     * @return Regions
-     */
-    public function setUser(\AppBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Add user
-     *
-     * @param \AppBundle\Entity\User $user
-     *
-     * @return Regions
-     */
-    public function addUser(\AppBundle\Entity\User $user)
-    {
-        $this->user[] = $user;
-
-        return $this;
-    }
-
-    /**
-     * Remove user
-     *
-     * @param \AppBundle\Entity\User $user
-     */
-    public function removeUser(\AppBundle\Entity\User $user)
-    {
-        $this->user->removeElement($user);
     }
 }

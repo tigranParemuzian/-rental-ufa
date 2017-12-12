@@ -42,13 +42,6 @@ class Types
      */
     private $ads;
 
-    /**
-     * @var
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="types")
-     */
-    private $user;
-
-
     public function __toString()
     {
         return $this->id ? $this->name : 'New Type';
@@ -152,53 +145,5 @@ class Types
     public function getAds()
     {
         return $this->ads;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \AppBundle\Entity\User $user
-     *
-     * @return Types
-     */
-    public function setUser(\AppBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \AppBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * Add user
-     *
-     * @param \AppBundle\Entity\User $user
-     *
-     * @return Types
-     */
-    public function addUser(\AppBundle\Entity\User $user)
-    {
-        $this->user[] = $user;
-
-        return $this;
-    }
-
-    /**
-     * Remove user
-     *
-     * @param \AppBundle\Entity\User $user
-     */
-    public function removeUser(\AppBundle\Entity\User $user)
-    {
-        $this->user->removeElement($user);
     }
 }

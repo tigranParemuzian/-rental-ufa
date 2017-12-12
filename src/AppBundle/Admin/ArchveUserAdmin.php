@@ -241,17 +241,17 @@ class ArchveUserAdmin extends Admin
         $object->setPhone($object->getUsername());
 
 
-        if($object->getRegions()){
-            foreach ($object->getRegions() as $rg){
-                $rg->setUser($object);
-            }
-        }
-
-        if($object->getTypes()){
-            foreach ($object->getTypes() as $rg){
-                $rg->setUser($object);
-            }
-        }
+//        if($object->getRegions()){
+//            foreach ($object->getRegions() as $rg){
+//                $rg->setUser($object);
+//            }
+//        }
+//
+//        if($object->getTypes()){
+//            foreach ($object->getTypes() as $rg){
+//                $rg->setUser($object);
+//            }
+//        }
 
 
     }
@@ -273,17 +273,17 @@ class ArchveUserAdmin extends Admin
 
         $log->info($t);
 
-        if($object->getRegions()){
-            foreach ($object->getRegions() as $rg){
-                $rg->setUser($object);
-            }
-        }
-
-        if($object->getTypes()){
-            foreach ($object->getTypes() as $rg){
-                $rg->setUser($object);
-            }
-        }
+//        if($object->getRegions()){
+//            foreach ($object->getRegions() as $rg){
+//                $rg->setUser($object);
+//            }
+//        }
+//
+//        if($object->getTypes()){
+//            foreach ($object->getTypes() as $rg){
+//                $rg->setUser($object);
+//            }
+//        }
     }
 
     /**

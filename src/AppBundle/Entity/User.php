@@ -166,8 +166,8 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->regions = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->types = new \Doctrine\Common\Collections\ArrayCollection();
+//        $this->regions = new \Doctrine\Common\Collections\ArrayCollection();
+//        $this->types = new \Doctrine\Common\Collections\ArrayCollection();
         $this->ads = new \Doctrine\Common\Collections\ArrayCollection();
 
     }
