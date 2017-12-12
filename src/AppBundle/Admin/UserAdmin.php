@@ -126,7 +126,7 @@ class UserAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id', null, ['label'=>'admin.user.id'])
-            ->add('updated', 'date', [])
+            ->add('created', 'date', [])
             ->add('lastName', null, ['label'=>'admin.user.lastName', 'template'=>'AppBundle:CRUD:fio_admin_list.html.twig'])
             ->add('username', null, ['label'=>'admin.user.phone'])
             ->add('enabled', null, ['editable'=>true, 'label'=>'admin.user.enabled'])
