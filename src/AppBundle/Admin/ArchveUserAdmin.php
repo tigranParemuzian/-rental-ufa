@@ -26,6 +26,12 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class ArchveUserAdmin extends Admin
 {
 
+    protected $datagridValues = array(
+        '_page' => 1,
+        '_sort_order' => 'DESC', // sort direction
+        '_sort_by' => 'created' // field name
+    );
+
 
     protected $baseRoutePattern = 'user-old';
     protected $baseRouteName = 'user-old';

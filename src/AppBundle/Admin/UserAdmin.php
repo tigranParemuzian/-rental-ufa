@@ -26,6 +26,11 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class UserAdmin extends Admin
 {
 
+    protected $datagridValues = array(
+        '_page' => 1,
+        '_sort_order' => 'DESC', // sort direction
+        '_sort_by' => 'created' // field name
+    );
 
 
     private $roles;
