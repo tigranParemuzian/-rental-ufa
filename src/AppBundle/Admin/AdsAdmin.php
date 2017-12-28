@@ -138,20 +138,20 @@ class AdsAdmin extends Admin
         if($securityContext->isGranted('ROLE_MODERATOR') === true || $securityContext->isGranted('ROLE_ADMIN') === true) {
 
             $datagridMapper
-                ->add('notAvalible', null, ['label'=>'admin.ads.notAvalible', 'editable'=>true])
+                /*->add('notAvalible', null, ['label'=>'admin.ads.notAvalible', 'editable'=>true])
                 ->add('notConnected', null, ['label'=>'admin.ads.notConnected', 'editable'=>true])
                 ->add('updated', 'doctrine_orm_date_range', array(), 'sonata_type_date_range_picker',
                     array('field_options_start' => array('format' => 'yyyy-MM-dd'),
                         'field_options_end' => array('format' => 'yyyy-MM-dd'))
-                )
+                )*/
                 ;
         }
 
             $datagridMapper
             ->add('id')
 
-            ->add('price', null, ['label'=>'admin.ads.price', 'editable'=>true])
-            ->add('state', 'doctrine_orm_choice', ['label' => 'admin.ads.state'], 'choice', ['choices'=>$this->state, 'expanded' => true,
+            ->add('price', 'doctrine_orm_number_range', ['label'=>'admin.ads.price', 'editable'=>true])
+            /*->add('state', 'doctrine_orm_choice', ['label' => 'admin.ads.state'], 'choice', ['choices'=>$this->state, 'expanded' => true,
         'multiple' => true])
             ->add('firstName', null, ['label'=>'admin.ads.fio', 'editable'=>true])
             ->add('phone', null, ['label'=>'admin.ads.phone', 'editable'=>true])
@@ -160,9 +160,9 @@ class AdsAdmin extends Admin
             ->add('kb', null, ['label'=>'admin.ads.kb', 'editable'=>true])
             ->add('sqMeter', null, ['label'=>'admin.ads.sqMeter', 'editable'=>true])
             ->add('renovation', 'doctrine_orm_choice',['label'=>'admin.ads.renovation'],'choice', ['choices'=>$this->renovation,  'expanded' => true,  'multiple' => true])
-            ->add('furnisher', null, ['label'=>'admin.ads.furnisher', 'editable'=>true])
-            ->add('region', null, ['label'=>'admin.ads.region'])
-            ->add('types', null, ['label'=>'admin.ads.types'])
+            ->add('furnisher', null, ['label'=>'admin.ads.furnisher', 'editable'=>true])*/
+            ->add('region', null, ['label'=>'admin.ads.region'], null, ['multiple'=>true])
+            ->add('types', null, ['label'=>'admin.ads.types'], null, ['multiple'=>true])
 
         ;
     }

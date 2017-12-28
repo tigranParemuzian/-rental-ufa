@@ -31,7 +31,7 @@ class Ads
     /**
      * @var string
      *
-     * @ORM\Column(name="price", type="string", length=255)
+     * @ORM\Column(name="price", type="integer", length=255)
      */
     private $price;
 

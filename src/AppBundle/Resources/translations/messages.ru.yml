@@ -109,6 +109,8 @@ admin:
         name: Имя
         isEnabled: Включен
         action: Действие
+        start: От
+        end: До
 
 Updated: Добавлен
 date_range_start: from

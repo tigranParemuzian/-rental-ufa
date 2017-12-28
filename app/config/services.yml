@@ -15,6 +15,16 @@ services:
             - { name: form.type, alias: app_user_registration }
 
 
+    app.form.number.range:
+        class: AppBundle\Form\NumberRangeFilter
+        tags:
+            - { name: sonata.admin.filter.type, alias: doctrine_orm_number_range }
+
+    app.admin.form.type.number_range:
+        class: AppBundle\Form\NumberRangeType
+        tags:
+            - { name: form.type, alias: app_admin_type_number_range }
+
     app.admin.ads:
         class: AppBundle\Admin\AdsAdmin
         arguments: [~, AppBundle\Entity\Ads,  SonataAdminBundle:CRUD, '@service_container']
